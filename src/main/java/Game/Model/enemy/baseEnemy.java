@@ -37,8 +37,7 @@ public class baseEnemy {
     public void setName(String name){
         this.name = name;
     }
-
     public void printAllValues(){
-        System.out.println(hp + " " + mana + " " + name);
+        System.out.println(hp + " " + mana + " " + name) ;
     }
 }
