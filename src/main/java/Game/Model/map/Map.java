@@ -1,100 +1,98 @@
 package Game.Model.map;
-
-import Game.Model.enemy.baseEnemy;
+import Game.Model.map.Room;
 
 import java.util.Arrays;
 
 public class Map {
-    private char[][] grid;
-    private int playerX;
-    private int playerY;
+    private Room[][] grid;
     private final int width;
     private final int height;
+
+    private int playerXCoordinate;
+    private int playerYCoordinate;
 
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
-        grid = new char[height][width];
+        grid = new Room[height][width];
         initializeMap();
         placePlayer();
     }
 
     private void initializeMap() {
-        for (char[] row : grid) {
-            Arrays.fill(row, '.'); // Initialize all cells with '.'
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                grid[i][j] = new Room(); // Initialize all cells with Room objects
+            }
         }
         // Place obstacles or special tiles on the map as needed
         alphaMap();
     }
 
     private void alphaMap() {
-        grid[0][4] = 'X';
-        grid[1][4] = 'X';
-        grid[2][4] = 'X';
-        grid[3][4] = 'X';
-        grid[4][4] = 'X';
-        grid[5][4] = 'X';
-        grid[6][4] = 'X';
-        grid[7][4] = 'X';
-        grid[8][4] = 'X';
-        grid[9][4] = 'X';
+        // Example of setting attributes for specific rooms
+        grid[0][4].setExplorable(true);
+        grid[1][4].setExplorable(true);
+        grid[2][4].setExplorable(true);
+        grid[3][4].setExplorable(true);
+        grid[4][4].setExplorable(true);
+        grid[5][4].setExplorable(true);
+        grid[6][4].setExplorable(true);
+        grid[7][4].setExplorable(true);
+        grid[8][4].setExplorable(true);
     }
 
     private void placePlayer() {
-        playerX = 4;
-        playerY = 0;
-        grid[playerY][playerX] = 'P'; // Place player at the starting position
-    }
-    private void getPlayerLocation() {
-        System.out.println("X:" + playerX + " Y:" + playerY);
+        playerXCoordinate = 4;
+        playerYCoordinate = 0;
+        grid[0][4].setPlayerInRoom(true);
+
     }
 
     public void printMap() {
-        for (char[] row : grid) {
-            for (char cell : row) {
-                System.out.print(cell + " ");
+        for (Room[] row : grid) {
+            for (Room room : row) {
+                // Print symbols based on room attributes
+                if (room.isExit()) {
+                    System.out.print("X ");
+                }
+                else if(room.isPlayerInRoom()) {
+                    System.out.print("P ");
+                }
+                else if (room.isExplorable()) {
+                    System.out.print("E ");
+                }
+                else {
+                    System.out.print(". ");
+                }
             }
             System.out.println();
         }
     }
 
-    public void moveLeft() {
-        if (playerX > 0) {
-            grid[playerY][playerX] = '.'; // Clear current player position
-            playerX--;
-            grid[playerY][playerX] = 'P'; // Place player at new position
-        } else {
-            System.out.println("Cannot move left. Reached the edge of the map.");
-        }
-    }
-
-    public void moveRight() {
-        if (playerX < width - 1) {
-            grid[playerY][playerX] = '.'; // Clear current player position
-            playerX++;
-            grid[playerY][playerX] = 'P'; // Place player at new position
-        } else {
-            System.out.println("Cannot move right. Reached the edge of the map.");
-        }
-    }
-
     public void moveForward() {
         if (inBounds()) {
-            grid[playerY][playerX] = '.'; // Clear current player position
-            playerY++;
-            grid[playerY][playerX] = 'P'; // Place player at new position
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
+            playerYCoordinate++;
+            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
+                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
+            }
+            else {
+                playerYCoordinate--;
+                System.out.println("Ouch I just hit my head on the wall...");
+                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
+            }
         } else {
             System.out.println("Cannot move forward. Reached the edge of the map.");
         }
     }
 
     public boolean inBounds() {
-        return playerX >= 0 && playerX < width && playerY >= 0 && playerY < height;
+        return playerXCoordinate >= 0 && playerXCoordinate < width && playerYCoordinate >= 0 && playerYCoordinate < height;
     }
-
-
 
     public static void main(String[] args) {
         Map dungeonMap = new Map(10, 10); // Create a 10x10 map
+        dungeonMap.printMap();
     }
 }
