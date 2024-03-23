@@ -21,8 +21,8 @@ public class baseEnemy {
     public String getName(){
         return this.name;
     }
-    public String getEnemyIntro(){
-        return this.enemyIntro;
+    public void sayEnemyIntro(){
+        System.out.println(this.enemyIntro);
     }
     public int getHp(){
         return this.hp;

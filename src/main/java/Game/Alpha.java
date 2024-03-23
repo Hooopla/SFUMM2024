@@ -21,13 +21,13 @@ public class Alpha {
                     dungeonMap.moveForward();
                     break;
                 case "backwards":
-                    //dungeonMap.moveBackward();
+                    System.out.println("I dont know how to go backwards");
                     break;
                 case "left":
-                    //dungeonMap.moveLeft();
+                    dungeonMap.moveLeft();
                     break;
                 case "right":
-                    //dungeonMap.moveRight();
+                    dungeonMap.moveRight();
                     break;
                 default:
                     System.out.println("Invalid direction.");
