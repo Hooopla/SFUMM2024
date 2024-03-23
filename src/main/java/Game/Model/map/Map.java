@@ -1,5 +1,6 @@
 package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
+import Game.Model.player.character;
 
 public class Map {
     private Room[][] grid;
@@ -7,6 +8,7 @@ public class Map {
     private final int height;
 
     // Player Tracker
+    character player;
     private int playerXCoordinate;
     private int playerYCoordinate;
 
@@ -14,9 +16,10 @@ public class Map {
     private int lastPlayerXCoordinate;
     private int lastPlayerYCoordinate;
 
-    public Map(int width, int height) {
+    public Map(int width, int height, character player) {
         this.width = width;
         this.height = height;
+        this.player = player;
         grid = new Room[height][width];
         initializeMap();
         placePlayer();
@@ -86,7 +89,6 @@ public class Map {
             if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
                 grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
                 if(grid[playerYCoordinate][playerXCoordinate].hasEnemyInRoom()) {
-                    System.out.println("THERE IS AN ENEMY HERE");
                     enemyEncounter(grid[playerYCoordinate][playerXCoordinate]);
                 }
             }
