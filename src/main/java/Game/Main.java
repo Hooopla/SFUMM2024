@@ -1,16 +1,16 @@
 package Game;
 
 import Game.Model.enemy.baseEnemy;
-import Game.Model.player.character;
+//import Game.Model.enemy.regularSkeleton;
 
 public class Main {
     public static void main(String[] args) {
+        baseEnemy angrySkeleton = new baseEnemy("Skeleton", "=== Angry Ratting ===", 40, 10, 5, 5);
+        baseEnemy swoleSkeleton = new baseEnemy("Skeleton", "=== Thicc Rattling ===", 50, 15, 7, 7);
+        angrySkeleton.printEnemyInfo();
+        angrySkeleton.printEnemyIntro();
 
-        baseEnemy enemy1 = new baseEnemy();
-        enemy1.printAllValues();
-        baseEnemy enemy2 = new baseEnemy(30, 40, "frog");
-        enemy2.printAllValues();
-
-        character player = new character("Hooopla");
+        swoleSkeleton.printEnemyInfo();
+        swoleSkeleton.printEnemyIntro();s
     }
 }
