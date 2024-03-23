@@ -1,44 +1,66 @@
 package Game.Model.enemy;
 
 public class baseEnemy {
-    private int hp;
-    private int mana;
     private String name;
+    private int hp;
+    private int attPower;
+    private int goldDrop;
+    private int expDrop;
+    private String enemyIntro;
 
-    public baseEnemy(){
-        this.hp = 20;
-        this.mana = 20;
-        this.name = "chicken";
+    public baseEnemy(String name, String enemyIntro, int hp, int attPower, int goldDrop, int expDrop){
+        this.name = name;
+        this.enemyIntro = enemyIntro;
+        this.hp = hp;
+        this.attPower = attPower;
+        this.goldDrop = goldDrop;
+        this.expDrop = expDrop;
     }
 
-    public baseEnemy(int hp, int mana, String name){
-        this.hp = hp;
-        this.mana = mana;
-        this.name = name;
+    //setter?
+    public String getName(){
+        return this.name;
+    }
+    public String getEnemyIntro(){
+        return this.enemyIntro;
     }
     public int getHp(){
         return this.hp;
     }
-    public int getMana(){
-        return this.mana;
+    public int getAttPower(){
+        return this.attPower;
+    }
+    public int getGoldDrop(){
+        return this.goldDrop;
+    }
+    public int getExp() {
+        return this.expDrop;
     }
 
-    public String getName(){
-        return this.name;
-    }
-
-    public void setHp(int hp){
-        this.hp = hp;
-    }
-    public void setMana(int mana){
-        this.mana = mana;
-    }
-
+    //getter?
     public void setName(String name){
         this.name = name;
     }
+    public void setEnemyIntro(String enemyIntro){
+        this.enemyIntro = enemyIntro;
+    }
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+    public void setAttPower(int attPower){
+        this.attPower = attPower;
+    }
+    public void setGoldDrop(int goldDrop){
+        this.goldDrop = goldDrop;
+    }
+    public void setExpDrop(int expDrop){
+        this.expDrop = expDrop;
+    }
 
-    public void printAllValues(){
-        System.out.println(hp + " " + mana + " " + name);
+    public void printEnemyInfo(){
+        System.out.println(name + " with Hp of " + hp + " and attack power of " + attPower + " that has " + goldDrop + " dollars and drops " + expDrop + " exp.");
+    }
+    public void printEnemyIntro(){
+        System.out.println(enemyIntro);
     }
 }
