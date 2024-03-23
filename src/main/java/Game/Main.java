@@ -13,5 +13,6 @@ public class Main {
         swoleSkeleton.printEnemyInfo();
         swoleSkeleton.printEnemyIntro();
         //Boss Asylumd = new Boss("");
+        swoleSkeleton.printEnemyIntro();
     }
 }

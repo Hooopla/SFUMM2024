@@ -41,6 +41,7 @@ public class baseEnemy {
     public void setName(String name){
         this.name = name;
     }
+
     public void setEnemyIntro(String enemyIntro){
         this.enemyIntro = enemyIntro;
     }
@@ -60,7 +61,7 @@ public class baseEnemy {
     public void printEnemyInfo(){
         System.out.println(name + " with Hp of " + hp + " and attack power of " + attPower + " that has " + goldDrop + " dollars and drops " + expDrop + " exp.");
     }
-    public void printEnemyIntro(){
+    public void printEnemyIntro() {
         System.out.println(enemyIntro);
     }
 }
