@@ -13,23 +13,18 @@ public class character {
     private boolean hasKey;
     private int hpPots;
     private int papers;
-
     private boolean winCondition;
-    private String chant;
 
     public character(String username) {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
-        this.attPoints = 100;
-        //this.healthPoints = randomizeStartingHP();
-        this.healthPoints = 50;
         this.attPoints = 10;
         this.currentGold = 0;
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
-        this.hpPots = 2;
-        this.papers = 1;
+        this.hpPots = 0;
+        this.papers = 0;
         this.winCondition = false;
     }
 
@@ -39,21 +34,6 @@ public class character {
 
     public void setWinCondition(boolean winCondition) {
         this.winCondition = winCondition;
-    }
-
-    public void setChant(String chant) {
-        this.chant = chant;
-    }
-
-    private void createChant() {
-        Scanner chant = new Scanner(System.in);
-        System.out.print("Create your characters chant: ");
-        this.chant = chant.nextLine();
-        this.chant.trim();
-    }
-
-    private String getChant() {
-        return this.chant;
     }
 
     public int getHpPots() {
