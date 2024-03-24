@@ -27,6 +27,7 @@ public class Combat {
     //while in combat
     public void startFight() {
         enemy.printEnemyInfo();
+        
         while (enemy.getHp() > 0 && player.getHealthPoints() > 0){
             //print status
             Scanner action = new Scanner(System.in);
