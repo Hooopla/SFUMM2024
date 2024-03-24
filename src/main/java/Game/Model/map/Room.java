@@ -3,77 +3,88 @@ package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
 
 public class Room {
-    private boolean isExit;
-    private boolean isExplorable;
-    private boolean isPlayerInRoom;
+    private boolean containsExit;
+    private boolean containsExplorable;
+    private boolean containsPlayer;
     private baseEnemy enemyInRoom;
-    private boolean hasEnemyInRoom;
-    private boolean hasTravellingShop;
-    private travellingShop shopkeeper;
+    private boolean containsEnemy;
+    private boolean containsSafeZone;
+    private boolean containsNPC;
+
+    private NPC npc;
 
     public Room() {
-        this.isExit = false;
-        this.isExplorable = false;
-        this.isPlayerInRoom = false;
-        this.hasEnemyInRoom = false;
-        this.hasTravellingShop = false;
+        containsExit = false;
+        containsExplorable = false;
+        containsPlayer = false;
+        containsEnemy = false;
+        containsSafeZone = false;
+        containsNPC = false;
     }
 
-    // Getters
-
-    public boolean isExplorable() {
-        return this.isExplorable;
+    public boolean isContainsExit() {
+        return containsExit;
     }
 
-    public boolean isPlayerInRoom() {
-        return isPlayerInRoom;
+    public void setContainsExit(boolean containsExit) {
+        this.containsExit = containsExit;
     }
 
-    public boolean hasEnemyInRoom() {
-        return hasEnemyInRoom;
+    public boolean isContainsExplorable() {
+        return containsExplorable;
     }
 
-    public boolean isExit() {
-        return this.isExit;
+    public void setContainsExplorable(boolean containsExplorable) {
+        this.containsExplorable = containsExplorable;
     }
 
-    public boolean isTravellingShop() {
-        return hasTravellingShop;
+    public boolean isContainsPlayer() {
+        return containsPlayer;
+    }
+
+    public void setContainsPlayer(boolean containsPlayer) {
+        this.containsPlayer = containsPlayer;
     }
 
     public baseEnemy getEnemyInRoom() {
         return enemyInRoom;
     }
 
-    public travellingShop getShopkeeper() {
-        return shopkeeper;
-    }
-
-    // Setters
-    public void setExit(boolean condition) {
-        isExit = condition;
-    }
-
-    public void setExplorable(boolean condition) {
-        isExplorable = condition;
-    }
-
-    public void setPlayerInRoom(boolean condition) {
-        isPlayerInRoom = condition;
-    }
-
-    public void setHasTravellingShop(boolean condition) {
-        this.hasTravellingShop = condition;
-    }
     public void setEnemyInRoom(baseEnemy enemyInRoom) {
         this.enemyInRoom = enemyInRoom;
-        hasEnemyInRoom = true;
+        setContainsEnemy(true);
     }
 
-    public void setShopkeeper(travellingShop shopkeeper) {
-        this.shopkeeper = shopkeeper;
-        this.hasTravellingShop = true;
+    public boolean isContainsEnemy() {
+        return containsEnemy;
     }
 
-    // Other methods as needed
+    private void setContainsEnemy(boolean containsEnemy) {
+        this.containsEnemy = containsEnemy;
+    }
+
+    public boolean isContainsSafeZone() {
+        return containsSafeZone;
+    }
+
+    public void setContainsSafeZone(boolean containsSafeZone) {
+        this.containsSafeZone = containsSafeZone;
+    }
+
+    public boolean isContainsNPC() {
+        return containsNPC;
+    }
+
+    private void setContainsNPC(boolean containsNPC) {
+        this.containsNPC = containsNPC;
+    }
+
+    public NPC getNpc() {
+        return npc;
+    }
+
+    public void setNpc(NPC npc) {
+        this.npc = npc;
+        setContainsNPC(true);
+    }
 }

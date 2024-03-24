@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Model.map.Direction;
 import Game.Model.map.Map;
 import Game.Model.player.character;
 
@@ -15,21 +16,20 @@ public class Alpha {
 
         while (playing) {
             dungeonMap.printMap();
-            System.out.println("Choose a direction (forwards, backwards, left, right)");
+            System.out.println("Choose a direction (up | down | left | right)");
             String movement = scanner.nextLine();
-
             switch (movement) {
-                case "forwards":
-                    dungeonMap.moveForward();
+                case "up":
+                    dungeonMap.move(Direction.UP);
                     break;
-                case "backwards":
-                    dungeonMap.moveBackwards();
+                case "down":
+                    dungeonMap.move(Direction.DOWN);
                     break;
                 case "left":
-                    dungeonMap.moveLeft();
+                    dungeonMap.move(Direction.LEFT);
                     break;
                 case "right":
-                    dungeonMap.moveRight();
+                    dungeonMap.move(Direction.RIGHT);
                     break;
                 default:
                     System.out.println("Invalid direction.");

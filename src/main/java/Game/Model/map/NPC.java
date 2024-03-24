@@ -1,10 +1,10 @@
 package Game.Model.map;
 
-public class travellingShop {
+public class NPC {
     String name = "Aurelia";
     boolean hasMet = false;
 
-    public travellingShop() {}
+    public NPC() {}
 
     public void converse() {
         if(hasMet == false) {
