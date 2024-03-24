@@ -16,8 +16,13 @@ public interface GameMessages{
     }
 
     static void showCredits() {
-        System.out.println("Jeremy Lee");
-        System.out.println("Gabriel Bello");
+        System.out.println("=========================================");
+        System.out.println("            Game Credits                 ");
+        System.out.println("=========================================");
+        System.out.println("           Developed by:                 ");
+        System.out.println("       Jeremy Lee & Gabriel Bello        ");
+        System.out.println("=========================================");
+
     }
 
     static void clearScreen() {

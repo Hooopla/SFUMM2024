@@ -149,15 +149,15 @@ public class character {
     // THIS IS ONLY TO BE CALLED DURING THE CREATION PROCCESS
     private int randomizeStartingHP() {
         Random random = new Random();
-        return random.nextInt(16) + 5; // Generates a random number between 0 and 15 and adds 5
+        return random.nextInt(16) + 15; // Generates a random number between 0 and 15 and adds 5
     }
 
     public void characterIntroduction() {
-        if (this.healthPoints < 10) {
+        if (this.healthPoints < 20) {
             System.out.println("You wake up in a pit of darkness... You feel so weak and frail.");
-        } else if (this.healthPoints < 15) {
+        } else if (this.healthPoints < 25) {
             System.out.println("You wake up in what seems like a... dungeon?? Ouch.. why do I have scratches..");
-        } else if (this.healthPoints < 20) {
+        } else if (this.healthPoints < 30) {
             System.out.println("You wake up but you can't help but cough due to the coldness of the floor.");
         } else {
             System.out.println("You are in excellent health.");

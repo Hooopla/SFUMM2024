@@ -49,7 +49,7 @@ public class Combat {
         System.out.println(mBoss.getEnemyIntro());
         mBoss.printEnemyInfo();
         System.out.println(mBoss.getBossOST() + "\nYou brace yourself for a difficult battle.");
-        int maxHp = mBoss.getHp();
+        int maxHp = mBoss.getMaxHp();
         boolean isBossEnraged = false;
 
         while (mBoss.getHp() > 0 && player.getHealthPoints() > 0){
@@ -65,7 +65,7 @@ public class Combat {
                     //enemy.printEnemyInfo();
                     //check if enemy is dead
                     // Check if boss is under 50% HP and hasn't been enraged before
-                    if (mBoss.getHp() < maxHp / 2 && !isBossEnraged) {
+                    if ((mBoss.getHp() < (maxHp / 2)) && !isBossEnraged) {
                         mBoss.enrage();
                         isBossEnraged = true; // Set the flag to true to indicate that the boss has been enraged
                     }
