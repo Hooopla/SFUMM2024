@@ -20,8 +20,8 @@ public class baseEnemy {
     public String getName(){
         return this.name;
     }
-    public void sayEnemyIntro(){
-        System.out.println(this.enemyIntro);
+    public String getEnemyIntro(){
+        return enemyIntro;
     }
     public int getHp(){
         return this.hp;
@@ -56,6 +56,6 @@ public class baseEnemy {
         System.out.println(name + "\nHP: " + hp + "\nAtt: " + attPower + "\n");
     }
     public void printEnemyIntro() {
-        System.out.println(enemyIntro);
+        System.out.println("===" + enemyIntro + "===");
     }
 }
