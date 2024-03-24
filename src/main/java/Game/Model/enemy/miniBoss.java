@@ -45,7 +45,6 @@ public class miniBoss extends baseEnemy{
 
     //At 50% Hp, the boss will play a message and permanently increase it's attack by 30%
     public void enrage(){
-        System.out.println("TESTING ENRAGED");
         System.out.println("\n" + getHalfHpCry() + "\n");
         int currentAttPower = getAttPower();
         //type cast currentAttPower to double then *1.3
