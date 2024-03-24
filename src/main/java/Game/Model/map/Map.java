@@ -204,9 +204,10 @@ public class Map implements GameMessages {
     }
 
     private void checkForEvents(Room grid) {
+        GameMessages.clearScreen();
         // Checking for Basic Enemy
         if(grid.isContainsEnemy()) {
-            GameMessages.clearScreen();
+            GameMessages.printCombatText();
             System.out.println("You stumble into an enemy..");
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
@@ -248,35 +249,8 @@ public class Map implements GameMessages {
         }
         // Checking for SHOP
         else if(grid.isContainsShop()) {
+            GameMessages.printShopKeeper();
             if(player.getCurrentGold() < 1000000) {
-                System.out.println("""
-                               .-""-.
-                              /-.{}  \\
-                              | _\\__.|
-                              \\/^)^ \\/
-                               \\ =  /
-                          .---./`--`\\.--._
-                         /     `;--'`     \\
-                        ;        /`       ;
-                        |       |*        |
-                        /   |   |     |    \\
-                        |    \\  |*    /    |
-                        \\_   |\\_|____/|  __/
-                          \\__//======\\\\__/
-                          / //_      _\\\\ \\
-                          -'  |`""\""`|  `-
-                              |  L   |
-                              >_ || _<
-                              |  ||  |
-                              |  ||  |
-                             /   ||   \\
-                            /    /,    \\
-                             `|"|`"|"|"`
-                             /  )  /  )  nic/jgs
-                            /__/  /__/
-                        
-                        """);
-
                 System.out.println("Shopkeeper: Hey there you! Yes you!! Come take a look you might find things you need...");
                 System.out.println("Shopkeeper: Wait a minute... You have no gold..");
                 System.out.println("*They close up shop...*");
@@ -284,6 +258,9 @@ public class Map implements GameMessages {
             else {
                 System.out.println("Shopkeeper: Come here take a look at me items");
             }
+        }
+        else {
+            System.out.println("Just another empty dungeon cell..");
         }
     }
 }

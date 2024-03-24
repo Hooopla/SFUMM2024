@@ -48,17 +48,7 @@ public class AlphaV2 implements  GameMessages {
                         System.out.println("Press Enter to continue...");
                         movement.nextLine();
                         GameMessages.clearScreen();
-                        System.out.println("-----------------------------------------------------");
-                        System.out.println("""
-
-                                                    \s
-                                 _____  _____  _____\s
-                                |     ||  _  ||  _  |
-                                | | | ||     ||   __|
-                                |_|_|_||__|__||__|  \s
-                                                    \s
-                                """);
-                        System.out.println("-----------------------------------------------------");
+                        GameMessages.printMapText();
                         dungeonMap.printDebugMap(); // <-- DEBUG MAP
                         System.out.println("-----------------------------------------------------");
                         System.out.println("Choose a direction: (up | down | left | right)");
