@@ -13,7 +13,6 @@ public class character {
         this.healthPoints = randomizeStartingHP();
         this.attPoints = 1;
         this.currentGold = 0;
-        characterIntroduction();
     }
 
     //getter
@@ -50,11 +49,11 @@ public class character {
 
     public void characterIntroduction() {
         if (this.healthPoints < 10) {
-            System.out.println("You are feeling very weak.");
+            System.out.println("You wake up in a pit of darkness... You feel so weak and frail.");
         } else if (this.healthPoints < 15) {
-            System.out.println("Your health is a bit low.");
+            System.out.println("You wake up in what seems like a... dungeon?? Ouch.. why do I have scratches..");
         } else if (this.healthPoints < 20) {
-            System.out.println("You are in decent health.");
+            System.out.println("You wake up but you can't help but cough due to the coldness of the floor.");
         } else {
             System.out.println("You are in excellent health.");
         }
