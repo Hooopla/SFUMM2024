@@ -10,6 +10,10 @@ public class Room {
     private boolean containsEnemy;
     private boolean containsSafeZone;
     private boolean containsNPC;
+    private boolean containsMiniBoss;
+    private boolean containsFinalBoss;
+    private boolean containsShop;
+    private boolean locked;
 
     private NPC npc;
 
@@ -20,6 +24,42 @@ public class Room {
         containsEnemy = false;
         containsSafeZone = false;
         containsNPC = false;
+        containsMiniBoss = false;
+        containsFinalBoss = false;
+        containsShop = false;
+        locked = false;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public boolean isContainsShop() {
+        return containsShop;
+    }
+
+    public void setContainsShop(boolean containsShop) {
+        this.containsShop = containsShop;
+    }
+
+    public boolean isContainsFinalBoss() {
+        return containsFinalBoss;
+    }
+
+    public void setContainsFinalBoss(boolean containsFinalBoss) {
+        this.containsFinalBoss = containsFinalBoss;
+    }
+
+    public boolean isContainsMiniBoss() {
+        return containsMiniBoss;
+    }
+
+    public void setContainsMiniBoss(boolean containsMiniBoss) {
+        this.containsMiniBoss = containsMiniBoss;
     }
 
     public boolean isContainsExit() {
