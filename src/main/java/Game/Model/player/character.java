@@ -81,10 +81,6 @@ public class character {
         this.papers += papers;
     }
 
-    public void removePaper(int papers) {
-        this.papers -= papers;
-    }
-
     public boolean isHasMetAurelia() {
         return hasMetAurelia;
     }
