@@ -86,7 +86,6 @@ public class Map implements GameMessages {
         grid[7][4].setContainsExplorable(true);
         //grid[7][4] MINI BOSS
         grid[0][0].setContainsExplorable(true);
-        grid[0][0].setNpc(Aurelia);
         grid[5][3].setContainsExplorable(true);
         grid[5][2].setContainsExplorable(true);
         grid[5][2].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
@@ -105,7 +104,6 @@ public class Map implements GameMessages {
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
-        grid[7][1].setNpc(Aurelia);
         grid[7][0].setContainsExplorable(true);
         // grid[7][0] // FINAL BOSS
     }
@@ -234,7 +232,13 @@ public class Map implements GameMessages {
         else if(grid.isContainsNPC()) {
             grid.setContainsNPC(false);
             NPC tempNPC = grid.getNpc();
-            tempNPC.converse(player);
+            int scenario = tempNPC.converse(player);
+            if(scenario == 1) {
+                this.grid[0][0].setNpc(Aurelia);
+            }
+            else if(scenario == 2) {
+                this.grid[7][1].setNpc(Aurelia);
+            }
         }
         // Checking for SHOP
         else if(grid.isContainsShop()) {

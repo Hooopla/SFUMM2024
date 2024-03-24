@@ -19,7 +19,7 @@ public class character {
         this.currentGold = 0;
         this.alive = true;
         this.hasMetAurelia = false;
-        this.hasKey = false;
+        this.hasKey = true;
     }
 
     public boolean isHasMetAurelia() {
