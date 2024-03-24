@@ -145,7 +145,6 @@ public class Map {
     public void move(Direction direction) {
         int newX = playerXCoordinate;
         int newY = playerYCoordinate;
-
         switch (direction) {
             case UP:
                 newY--;
@@ -190,6 +189,7 @@ public class Map {
         if(grid.isContainsEnemy()) {
             // Call the combat Function
             System.out.println("Call combat function");
+            Combat BattleSequence = new Combat(grid.getEnemyInRoom(), player);
         }
         else if(grid.isContainsNPC()) {
             //
