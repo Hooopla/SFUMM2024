@@ -49,7 +49,7 @@ public class Map {
 
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setContainsExplorable(true);
-        grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5));
+        grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "Angry Ratting", 40, 10, 5));
         // We meet Aurelia
         grid[2][4].setContainsExplorable(true);
         grid[2][4].setNpc(Aurelia);

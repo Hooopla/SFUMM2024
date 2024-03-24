@@ -11,12 +11,15 @@ public class character {
     public character(String username) {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
-        this.attPoints = 1;
+        this.attPoints = 10;
         this.currentGold = 0;
         characterIntroduction();
     }
 
     //getter
+    public String getUsername(){
+        return this.username;
+    }
     public int getHealthPoints(){
         return this.healthPoints;
     }
@@ -30,6 +33,9 @@ public class character {
     }
 
     //setter
+    public String setUsername(String username){
+        return this.username = username;
+    }
     public int setHealthPoints(int healthPoints){
         return this.healthPoints = healthPoints;
     }
@@ -58,6 +64,10 @@ public class character {
         } else {
             System.out.println("You are in excellent health.");
         }
+    }
+
+    public void printPlayerStatus(){
+        System.out.println("Player " + getUsername() + " is at " + getHealthPoints() + " Hp.");
     }
 
 }
