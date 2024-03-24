@@ -17,8 +17,13 @@ public class character {
         this.username = username;
         //this.healthPoints = randomizeStartingHP();
         this.healthPoints = 500;
+<<<<<<< Updated upstream
         this.attPoints = 20;
         this.currentGold = 0;
+=======
+        this.attPoints = 100;
+        this.currentGold = 1000;
+>>>>>>> Stashed changes
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
