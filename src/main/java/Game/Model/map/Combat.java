@@ -42,8 +42,9 @@ public class Combat {
                     //check if enemy is dead
                     if(enemy.getHp() <= 0){
                         System.out.println("You have defeated the " + enemy.getName() + "!");
+                        player.setCurrentGold(player.getCurrentGold() + enemy.getGoldDrop());
+                        System.out.println("You have gained " + enemy.getGoldDrop() + " gold from the " + enemy.getName() + "!");
                         setBattleOutcome(true);
-                        System.out.println(getBattleOutcome());
                         return;
                     }
 
@@ -58,7 +59,6 @@ public class Combat {
                         //if player is deadge
                         if(player.getHealthPoints() <= 0){
                             System.out.println("u ded");
-                            System.out.println(getBattleOutcome());
                             return;
                         }
 
