@@ -31,12 +31,14 @@ public class AlphaV2 implements  GameMessages {
                     String username;
                     inGame = true;
                     do {
-                        System.out.print("Please enter your username: ");
+                        System.out.print("What is your name, lost one? ");
                         username = scanner.nextLine().trim(); // Remove leading and trailing spaces
-                        if (username.contains(" ")) {
-                            System.out.println("Username cannot contain spaces. Please try again.");
+                        if (username.isEmpty()) {
+                            System.out.println("Though may be lost you can't truly forget you name can you?...");
+                            GameMessages.clearScreen();
                         }
-                    } while (username.contains(" "));
+                        username = username.trim();
+                    } while (username.contains(" ") || username.isEmpty());
                     player = new character(username);
                     dungeonMap.setNewPlayer(player);
                     GameMessages.clearScreen();
@@ -72,14 +74,20 @@ public class AlphaV2 implements  GameMessages {
                                 System.out.println("Invalid direction.");
                                 break;
                         }
-                        inGame = player.isAlive();
+                        if (player.isAlive() && player.isWinCondition()) {
+                            inGame = false;
+                            ApplicationRunning = false;
+                            break;
+                        }
+                        else if(player.isAlive() == false) {
+                            inGame = false;
+                        }
                     }
                     break;
                 case "2":
                     GameMessages.showCredits();
                     break;
                 case "3":
-                    System.out.println("Ending program");
                     ApplicationRunning = false;
                     break;
                 default:
@@ -87,5 +95,6 @@ public class AlphaV2 implements  GameMessages {
                     break;
             }
         }
+        System.out.println("The dungeon crumbles apart... Wait no.. It's rebuilding?!??!....");
     }
 }

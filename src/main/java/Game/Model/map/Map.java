@@ -123,25 +123,6 @@ public class Map implements GameMessages {
         playerYCoordinate = 0;
         grid[0][4].setContainsPlayer(true);
     }
-
-    public void printMap() {
-        for (Room[] row : grid) {
-            for (Room room : row) {
-                // Print symbols based on room attributes
-                if (room.isContainsExit()) {
-                    System.out.print("X ");
-                } else if (room.isContainsPlayer()) {
-                    System.out.print("P ");
-                } else if (room.isContainsExplorable()) {
-                    System.out.print("E ");
-                } else {
-                    System.out.print(". ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
     public void printDebugMap() {
         for (Room[] row : grid) {
             for (Room room : row) {
@@ -267,7 +248,9 @@ public class Map implements GameMessages {
             else {
                 grid.setContainsBoss(false);
                 if(grid.isContainsExit()) {
-                    System.out.println("ENDING SHIT IS HERE");
+                    this.player.setWinCondition(true);
+                    GameMessages.clearScreen();
+                    GameMessages.endingMessage();
                 }
             }
         }
