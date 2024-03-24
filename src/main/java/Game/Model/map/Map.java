@@ -188,8 +188,8 @@ public class Map {
         // Check for Combat
         if(grid.isContainsEnemy()) {
             // Call the combat Function
-            System.out.println("Call combat function");
-            Combat BattleSequence = new Combat(grid.getEnemyInRoom(), player);
+            Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
+            battleSequence.startFight();
         }
         else if(grid.isContainsNPC()) {
             //
