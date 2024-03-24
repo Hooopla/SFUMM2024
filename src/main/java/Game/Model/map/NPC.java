@@ -36,22 +36,21 @@ public class NPC {
         else if(player.getHasMetAurelia() && saved) {
             System.out.println("Aurelia: It seems that your journey is coming to an end. Here take this it was my mother's pendant before she passed..");
             System.out.println("OBTAINED: SCARLET PENDANT");
-            player.setHealthPoints(100);
+            System.out.println("+100 Max HP");
+            player.setHealthPoints(player.getHealthPoints() + 100);
             return 3;
         }
         else if(!player.getHasMetAurelia() && saved) {
             System.out.println("Aurelia: I don't seem to recognized your face. It seems my saviour has been lost to the fog of the dungeon..");
             System.out.println("Aurelia: Never the less here. Take this as a good luck charm...");
             System.out.println("OBTAINED: SCARLET PENDANT");
-            player.setHealthPoints(100);
+            System.out.println("+100 Max HP");
+            player.setHealthPoints(player.getHealthPoints() + 100);
             player.setHasMetAurelia(true);
             return 3;
         }
         else {
             return 0;
         }
-    }
-    public void runsOffVoiceLine() {
-        System.out.println("Aurelia: Oh no I must leave now. My BLANK seems to be telling me danger is near.");
     }
 }

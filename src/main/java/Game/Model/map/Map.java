@@ -99,6 +99,7 @@ public class Map implements GameMessages {
         grid[4][1].setContainsExplorable(true);
         //grid[4][1] MINI BOSS
         grid[3][1].setContainsExplorable(true);
+        grid[3][1].setContainsKey(true);
         grid[6][5].setContainsExplorable(true);
         grid[6][5].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
         grid[6][6].setContainsExplorable(true);
@@ -111,7 +112,6 @@ public class Map implements GameMessages {
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
-        grid[7][2].setContainsKey(true);
         grid[7][1].setContainsExplorable(true);
         //grid[7][0]
         grid[7][0].setContainsExplorable(true);
@@ -216,7 +216,9 @@ public class Map implements GameMessages {
     private void checkForEvents(Room grid) {
         GameMessages.clearScreen();
         if(grid.isContainsMessage()) {
+            System.out.println("You found a piece of paper and it reads...");
             System.out.println(grid.getMessage());
+            System.out.println("I should be careful the blood stains on this notes tells me something bad...");
             grid.setContainsMessage(false);
         }
         // Checking for Basic Enemy
@@ -245,6 +247,7 @@ public class Map implements GameMessages {
         }
         // Checking for Boss
         else if(grid.isContainsBoss()) {
+           GameMessages.printCombatText();
            Combat battleSequence = new Combat(grid.getBossInRoom(), player);
            battleSequence.fightScenarioChecker();
             this.player.setAlive(battleSequence.getBattleOutcome());
@@ -334,7 +337,7 @@ public class Map implements GameMessages {
                             Shopping = false;
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Shopkeeper: Uhmm I don't quite understand boy? What is it again??");
+                        System.out.println("Shopkeeper: Uhmm I don't quite understand... Speak up!!! What is it again??");
                     }
                 }
             }
