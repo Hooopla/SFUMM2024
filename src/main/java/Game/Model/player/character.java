@@ -5,16 +5,41 @@ import java.util.Random;
 public class character {
     private String username;
     private int healthPoints;
-    private int level;
-    private int currentEXP;
-
+    private int attPoints;
+    private int currentGold;
 
     public character(String username) {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
-        this.level = 1;
-        this.currentEXP = 0;
+        this.attPoints = 1;
+        this.currentGold = 0;
         characterIntroduction();
+    }
+
+    //getter
+    public int getHealthPoints(){
+        return this.healthPoints;
+    }
+
+    public int getAttPoints(){
+        return this.attPoints;
+    }
+
+    public int getCurrentGold(){
+        return this.currentGold;
+    }
+
+    //setter
+    public int setHealthPoints(int healthPoints){
+        return this.healthPoints = healthPoints;
+    }
+
+    public int setAttPoints(int attPoints){
+        return this.attPoints = attPoints;
+    }
+
+    public int setCurrentGold(int currentGold){
+        return this.currentGold = currentGold;
     }
 
     // THIS IS ONLY TO BE CALLED DURING THE CREATION PROCCESS
@@ -34,4 +59,5 @@ public class character {
             System.out.println("You are in excellent health.");
         }
     }
+
 }

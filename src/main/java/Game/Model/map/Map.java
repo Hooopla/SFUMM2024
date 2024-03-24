@@ -1,5 +1,6 @@
 package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
+import Game.Model.player.character;
 
 public class Map {
     private Room[][] grid;
@@ -7,6 +8,7 @@ public class Map {
     private final int height;
 
     // Player Tracker
+    character player;
     private int playerXCoordinate;
     private int playerYCoordinate;
 
@@ -14,9 +16,10 @@ public class Map {
     private int lastPlayerXCoordinate;
     private int lastPlayerYCoordinate;
 
-    public Map(int width, int height) {
+    public Map(int width, int height, character player) {
         this.width = width;
         this.height = height;
+        this.player = player;
         grid = new Room[height][width];
         initializeMap();
         placePlayer();
@@ -37,7 +40,7 @@ public class Map {
         grid[0][4].setExplorable(true);
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setExplorable(true);
-        baseEnemy angrySkeleton = new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5, 5);
+        baseEnemy angrySkeleton = new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5);
         grid[1][4].setEnemyInRoom(angrySkeleton);
 
         grid[2][4].setExplorable(true);
@@ -146,7 +149,10 @@ public class Map {
 
     public void enemyEncounter(Room grid) {
         baseEnemy currentEnemy = grid.getEnemyInRoom();
+        Combat battle = new Combat(currentEnemy, player);
         currentEnemy.sayEnemyIntro();
+        //throw down
+        battle.startFight();
     }
 
     public boolean inBounds() {

@@ -8,13 +8,12 @@ public class baseEnemy {
     private int expDrop;
     private String enemyIntro;
 
-    public baseEnemy(String name, String enemyIntro, int hp, int attPower, int goldDrop, int expDrop){
+    public baseEnemy(String name, String enemyIntro, int hp, int attPower, int goldDrop){
         this.name = name;
         this.enemyIntro = enemyIntro;
         this.hp = hp;
         this.attPower = attPower;
         this.goldDrop = goldDrop;
-        this.expDrop = expDrop;
     }
 
     //setter?
@@ -32,9 +31,6 @@ public class baseEnemy {
     }
     public int getGoldDrop(){
         return this.goldDrop;
-    }
-    public int getExp() {
-        return this.expDrop;
     }
 
     //getter?
@@ -54,12 +50,10 @@ public class baseEnemy {
     public void setGoldDrop(int goldDrop){
         this.goldDrop = goldDrop;
     }
-    public void setExpDrop(int expDrop){
-        this.expDrop = expDrop;
-    }
 
     public void printEnemyInfo(){
-        System.out.println(name + " with Hp of " + hp + " and attack power of " + attPower + " that has " + goldDrop + " dollars and drops " + expDrop + " exp.");
+        //System.out.println("===");
+        System.out.println(name + "\nHP: " + hp + "\nAtt: " + attPower + "\n");
     }
     public void printEnemyIntro() {
         System.out.println(enemyIntro);
