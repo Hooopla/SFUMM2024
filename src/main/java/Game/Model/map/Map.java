@@ -99,6 +99,7 @@ public class Map implements GameMessages {
         grid[4][1].setContainsExplorable(true);
         //grid[4][1] MINI BOSS
         grid[3][1].setContainsExplorable(true);
+        grid[3][1].setContainsKey(true);
         grid[6][5].setContainsExplorable(true);
         grid[6][5].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
         grid[6][6].setContainsExplorable(true);
@@ -111,7 +112,6 @@ public class Map implements GameMessages {
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
-        grid[7][2].setContainsKey(true);
         grid[7][1].setContainsExplorable(true);
         //grid[7][0]
         grid[7][0].setContainsExplorable(true);
