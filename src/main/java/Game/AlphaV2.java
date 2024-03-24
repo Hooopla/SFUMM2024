@@ -50,16 +50,16 @@ public class AlphaV2 implements  GameMessages {
                         String playerControl = movementScanner.nextLine();
                         switch (playerControl.toLowerCase().replaceAll("\\s", "")) {
                             case "up":
-                                dungeonMap.move(Direction.UP);
+                                inGame = dungeonMap.move(Direction.UP);
                                 break;
                             case "down":
-                                dungeonMap.move(Direction.DOWN);
+                                inGame = dungeonMap.move(Direction.DOWN);
                                 break;
                             case "left":
-                                dungeonMap.move(Direction.LEFT);
+                                inGame = dungeonMap.move(Direction.LEFT);
                                 break;
                             case "right":
-                                dungeonMap.move(Direction.RIGHT);
+                                inGame = dungeonMap.move(Direction.RIGHT);
                                 break;
                             default:
                                 System.out.println("Invalid direction.");
