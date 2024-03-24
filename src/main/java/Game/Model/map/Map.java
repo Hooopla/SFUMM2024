@@ -59,16 +59,16 @@ public class Map implements GameMessages {
 
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setContainsExplorable(true);
-        grid[1][4].setBossInRoom(new miniBoss("Savage Skeleton", "Angry Ratting", 70, 10, 5, "Slave Knight Gael OST", "Is this the blood... The blood of the dark soul?", "Augh...", "For my lady's painting."));
+        grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "Angry Ratting", 30, 10, 5));
         grid[1][5].setContainsExplorable(true);
-        grid[1][5].setEnemyInRoom(new baseEnemy("Swole Skeleton", "=== Thicc Rattling ===", 50, 15, 7));
+        grid[1][5].setEnemyInRoom(new baseEnemy("Swole Skeleton", "=== Thicc Rattling ===", 70, 15, 7));
         grid[1][6].setContainsExplorable(true);
         grid[1][7].setContainsExplorable(true);
         grid[1][7].setContainsShop(true);
         grid[1][3].setContainsExplorable(true);
-        grid[1][3].setEnemyInRoom(new baseEnemy("Smol Golem", "Rock noises", 70, 3, 4));
+        grid[1][3].setEnemyInRoom(new baseEnemy("Smol Golem", "Rock noises", 50, 3, 4));
         grid[1][2].setContainsExplorable(true);
-        grid[1][2].setEnemyInRoom(new baseEnemy("Girthy Golem", "Who fed Malphite?", 110, 20, 20));
+        grid[1][2].setEnemyInRoom(new baseEnemy("Girthy Golem", "Who fed Malphite?", 110, 15, 20));
         grid[1][1].setContainsExplorable(true);
         grid[1][1].setContainsShop(true);
         grid[1][0].setContainsExplorable(true);
@@ -84,11 +84,11 @@ public class Map implements GameMessages {
         grid[5][4].setContainsShop(true);
 
         grid[6][4].setContainsExplorable(true);
-        grid[6][4].setBossInRoom(new miniBoss("Haligtree Knight Loretta", "Glintstone Phalanx noises", 100, 20, 50, "Knight of the Haligtree", "Loretta's Mastery noises", "Great Enemy Felled", "..."));
+        grid[6][4].setBossInRoom(new miniBoss("Haligtree Knight Loretta", "Glintstone Phalanx noises", 100, 15, 30, "Knight of the Haligtree", "More Glintstone Phalanx noises", "Great Enemy Felled", "..."));
         //grid[6][4] MINI BOSS Haligtree Knight Loretta
 
         grid[7][4].setContainsExplorable(true);
-        grid[7][4].setBossInRoom(new miniBoss("Malenia, Blade of Miquella", "| Heed my words. | \n| I am Malenia. Blade of Miquella |\n| And I have never known defeat.|", 100, 20, 50, "Malenia, Blade of Miquella", "| Wait. |\n| The scarlet bloom flowers once more |\n| You will witness true horror. |\n| Now, rot! |", "| Your Strength, extraordinary... |\n| O, dearest Miquella |\n| I'm sorry. I finally met my match... |", "I am Malenia, Blade of Miquella..."));
+        grid[7][4].setBossInRoom(new miniBoss("Malenia, Blade of Miquella", "| Heed my words. | \n| I am Malenia. Blade of Miquella |\n| And I have never known defeat.|", 140, 20, 50, "Malenia, Blade of Miquella", "| Wait. |\n| The scarlet bloom flowers once more |\n| You will witness true horror. |\n| Now, rot! |", "| Your Strength, extraordinary... |\n| O, dearest Miquella |\n| I'm sorry. I finally met my match... |", "I am Malenia, Blade of Miquella..."));
         //grid[7][4] MINI BOSS Malenia :huh:
 
         grid[0][0].setContainsExplorable(true);
@@ -97,20 +97,20 @@ public class Map implements GameMessages {
         grid[6][5].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
-        grid[4][1].setBossInRoom(new miniBoss("Asylum Demon", "| asylum text |", 100, 15, 20, "Tarus Demon", "*Slams into the ground", "Victory Achieved", "..."));
+        grid[4][1].setBossInRoom(new miniBoss("Asylum Demon", "| asylum text |", 100, 10, 15, "Tarus Demon", "*Slams into the ground", "Victory Achieved", "..."));
 
         //grid[4][1] MINI BOSS
 
         grid[3][1].setContainsExplorable(true);
         grid[3][1].setContainsKey(true);
         grid[5][2].setContainsExplorable(true);
-        grid[5][2].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
+        grid[5][2].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 30, 10, 5));
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
         grid[5][6].setEnemyInRoom(new baseEnemy("Crazed Imp", "Hehehe! giggles mischievously Snicker-snack!", 40, 30, 5));
 
         grid[4][6].setContainsExplorable(true);
-        grid[4][6].setBossInRoom(new miniBoss("Darkeater Midir", "*Laser Beam Intensifies", 200, 30, 40, "The Ringed City - Darkeater Midir", "GNAAAAAH!", "Heir of the Dungeon Destroyed", "*ROARS*"));
+        grid[4][6].setBossInRoom(new miniBoss("Darkeater Midir", "*Laser Beam Intensifies", 200, 30, 70, "The Ringed City - Darkeater Midir", "GNAAAAAH!", "Heir of the Dungeon Destroyed", "*ROARS*"));
 
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
