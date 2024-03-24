@@ -52,6 +52,7 @@ public class Room {
 
     public void setMessage(String message) {
         this.message = message;
+        this.containsMessage = true;
     }
 
     public boolean isLocked() {

@@ -215,6 +215,10 @@ public class Map implements GameMessages {
 
     private void checkForEvents(Room grid) {
         GameMessages.clearScreen();
+        if(grid.isContainsMessage()) {
+            System.out.println(grid.getMessage());
+            grid.setContainsMessage(false);
+        }
         // Checking for Basic Enemy
         if(grid.isContainsEnemy()) {
             GameMessages.printCombatText();
@@ -228,7 +232,11 @@ public class Map implements GameMessages {
                     grid.setContainsKey(true);
                 }
                 if(this.player.getPapers() != 0) {
-                    System.out.println("");
+                    System.out.println("With your last dying breath you remember the piece of paper you bought...");
+                    System.out.print("Write your message: ");
+                    Scanner messageInput = new Scanner(System.in);
+                    String message = messageInput.nextLine();
+                    grid.setMessage(message);
                 }
             }
             else {
@@ -242,7 +250,16 @@ public class Map implements GameMessages {
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
-                grid.setContainsKey(true);
+                if (this.player.isHasKey()) {
+                    grid.setContainsKey(true);
+                }
+                if (this.player.getPapers() != 0) {
+                    System.out.println("With your last dying breath you remember the piece of paper you bought...");
+                    System.out.print("Write your message: ");
+                    Scanner messageInput = new Scanner(System.in);
+                    String message = messageInput.nextLine();
+                    grid.setMessage(message);
+                }
             }
             else {
                 grid.setContainsBoss(false);
