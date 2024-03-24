@@ -247,6 +247,7 @@ public class Map implements GameMessages {
         }
         // Checking for Boss
         else if(grid.isContainsBoss()) {
+           GameMessages.printCombatText();
            Combat battleSequence = new Combat(grid.getBossInRoom(), player);
            battleSequence.fightScenarioChecker();
             this.player.setAlive(battleSequence.getBattleOutcome());
