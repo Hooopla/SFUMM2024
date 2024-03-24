@@ -1,11 +1,12 @@
 package Game.Model.map;
+import Game.GameMessages;
 import Game.Model.enemy.baseEnemy;
 import Game.Model.player.character;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Map {
+public class Map implements GameMessages {
     private Room[][] grid;
     private final int width;
     private final int height;
@@ -138,7 +139,7 @@ public class Map {
                 if (room.isContainsExit()) {
                     System.out.print("X ");
                 } else if(room.isLocked()) {
-                    System.out.println("L ");
+                    System.out.print("L ");
                 } else if (room.isContainsPlayer()) {
                     System.out.print("P ");
                 } else if (room.isContainsShop()) {
@@ -203,9 +204,10 @@ public class Map {
     }
 
     private void checkForEvents(Room grid) {
-        // Check for Combat
+        // Checking for Basic Enemy
         if(grid.isContainsEnemy()) {
-            // Call the combat Function
+            GameMessages.clearScreen();
+            System.out.println("You stumble into an enemy..");
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
             this.player.setAlive(battleSequence.getBattleOutcome());
@@ -216,7 +218,8 @@ public class Map {
                 grid.setContainsEnemy(false);
             }
         }
-        else if(grid.isContainsMiniBoss()) {
+        // Checking for Mini Boss
+        if(grid.isContainsMiniBoss()) {
            Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
            battleSequence.startFight();
             this.player.setAlive(battleSequence.getBattleOutcome());
@@ -227,7 +230,8 @@ public class Map {
                 grid.setContainsEnemy(false);
             }
         }
-        else if(grid.isContainsFinalBoss()) {
+        // Checking for Final Boss
+        if(grid.isContainsFinalBoss()) {
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
             this.player.setAlive(battleSequence.getBattleOutcome());
@@ -238,8 +242,20 @@ public class Map {
                 grid.setContainsEnemy(false);
             }
         }
-        else if(grid.isContainsNPC()) {
+        // Checking for NPC
+        if(grid.isContainsNPC()) {
             System.out.println("NPC Dialogue");
+        }
+        // Checking for SHOP
+        else if(grid.isContainsShop()) {
+            if(player.getCurrentGold() < 1000000) {
+                System.out.println("Shopkeeper: Hey there you! Yes you!! Come take a look you might find things you need...");
+                System.out.println("Shopkeeper: Wait a minute... You have no gold..");
+                System.out.println("*They close up shop...*");
+            }
+            else {
+                System.out.println("Shopkeeper: Come here take a look at me items");
+            }
         }
     }
 }

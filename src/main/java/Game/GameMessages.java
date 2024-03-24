@@ -1,6 +1,6 @@
 package Game;
 
-public interface GameMessages {
+public interface GameMessages{
     String WELCOME_MESSAGE = "Welcome to Dungeons";
     String VERSION_MESSAGE = "Alpha 1.0.1";
     String OPTIONS_MESSAGE = "\nPress 1 to enter the dungeon";

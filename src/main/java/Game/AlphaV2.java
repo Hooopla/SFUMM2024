@@ -41,14 +41,21 @@ public class AlphaV2 implements  GameMessages {
                     dungeonMap.setNewPlayer(player);
                     GameMessages.clearScreen();
                     player.characterIntroduction();
-                    while(inGame) {
+                    while (inGame) {
+                        Scanner movement = new Scanner(System.in);
+                        // Prompt the user to press Enter to continue
+
+                        System.out.println("Press Enter to continue...");
+                        movement.nextLine();
+                        GameMessages.clearScreen();
+
                         dungeonMap.printDebugMap(); // <-- DEBUG MAP
                         System.out.println("-----------------------------------------------------");
                         System.out.println("Choose a direction: (up | down | left | right)");
                         System.out.println("-----------------------------------------------------");
-                        Scanner movementScanner = new Scanner(System.in);
-                        String playerControl = movementScanner.nextLine();
-                        switch (playerControl.toLowerCase().replaceAll("\\s", "")) {
+
+                        String playerControl = movement.nextLine().toLowerCase().replaceAll("\\s", "");
+                        switch (playerControl) {
                             case "up":
                                 dungeonMap.move(Direction.UP);
                                 break;
