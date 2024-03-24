@@ -13,8 +13,8 @@ public class character {
     public character(String username) {
         this.username = username;
         //this.healthPoints = randomizeStartingHP();
-        this.healthPoints = 5000;
-        this.attPoints = 1000;
+        this.healthPoints = 50;
+        this.attPoints = 10;
         this.currentGold = 0;
         this.alive = true;
     }

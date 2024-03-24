@@ -58,7 +58,7 @@ public class Map implements GameMessages {
 
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setContainsExplorable(true);
-        grid[1][4].setBossInRoom(new miniBoss("Savage Skeleton", "Angry Ratting", 40, 10, 5, "LOL", "NYAH", "NOO"));
+        grid[1][4].setBossInRoom(new miniBoss("Savage Skeleton", "Angry Ratting", 70, 10, 5, "Slave Knight Gael OST", "Is this the blood... The blood of the dark soul?", "Augh...", "For my lady's painting."));
         grid[1][5].setContainsExplorable(true);
         grid[1][5].setEnemyInRoom(new baseEnemy("Swole Skeleton", "=== Thicc Rattling ===", 50, 15, 7));
         grid[1][6].setContainsExplorable(true);

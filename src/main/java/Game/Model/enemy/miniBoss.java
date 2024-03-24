@@ -4,12 +4,14 @@ public class miniBoss extends baseEnemy{
     private String bossOST;
     private String halfHpCry;
     private String defeatMsg;
+    private String killPlayerMsg;
     //constructors
-    public miniBoss(String name, String enemyIntro, int hp, int attPower, int goldDrop, String bossOST, String halfHpCry, String defeatMsg) {
+    public miniBoss(String name, String enemyIntro, int hp, int attPower, int goldDrop, String bossOST, String halfHpCry, String defeatMsg, String killPlayerMsg) {
         super(name, enemyIntro, hp, attPower, goldDrop);
         this.bossOST = bossOST;
         this.halfHpCry = halfHpCry;
         this.defeatMsg = defeatMsg;
+        this.killPlayerMsg = killPlayerMsg;
     }
     //getters
     public String getBossOST(){
@@ -21,6 +23,7 @@ public class miniBoss extends baseEnemy{
     public String getDefeatMsg(){
         return defeatMsg;
     }
+    public String getKillPlayerMsg() { return killPlayerMsg;}
     //setters
     public String setBossOST(String bossOst){
         return this.bossOST = bossOst;
@@ -31,6 +34,7 @@ public class miniBoss extends baseEnemy{
     public String setDefeatMsg(String defeatMsg){
         return this.defeatMsg = defeatMsg;
     }
+    public String setKillPlayerMsg(String killPlayerMsg) { return this.killPlayerMsg = killPlayerMsg;}
 
     //At 50% Hp, the boss will play a message and permanently increase it's attack by 30%
     public void enrage(){

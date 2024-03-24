@@ -44,6 +44,8 @@ public class Combat {
     private void startBossFight() {
         System.out.println("MBOSS");
         mBoss.printEnemyInfo();
+        System.out.println(mBoss.getBossOST() + "\nYou brace yourself for a difficult battle.");
+        int maxHp = mBoss.getHp();
 
         while (mBoss.getHp() > 0 && player.getHealthPoints() > 0){
             //print status
@@ -57,6 +59,9 @@ public class Combat {
                     mBoss.setHp(mBoss.getHp() - player.getAttPoints());
                     //enemy.printEnemyInfo();
                     //check if enemy is dead
+                    if(mBoss.getHp() < maxHp/2){
+                        mBoss.enrage();
+                    }
                     if(mBoss.getHp() <= 0){
                         System.out.println("You have defeated the " + mBoss.getName() + "!");
                         player.setCurrentGold(player.getCurrentGold() + mBoss.getGoldDrop());
@@ -71,12 +76,13 @@ public class Combat {
                         //enemy attack
                         System.out.println("===" + mBoss.getName() + "'s Turn ===");
                         player.setHealthPoints(player.getHealthPoints() - mBoss.getAttPower());
-                        System.out.println(mBoss.getName() + " backhanded you for " + mBoss.getAttPower() + " damage!\n");
+                        System.out.println(mBoss.getName() + " Bodies you for " + mBoss.getAttPower() + " damage!\n");
                         //player.printPlayerStatus();
 
                         //if player is deadge
                         if(player.getHealthPoints() <= 0){
                             System.out.println("u ded");
+                            System.out.println(mBoss.getName() + ": For my lady's painting.");
                             return;
                         }
 
@@ -84,13 +90,13 @@ public class Combat {
                     player.printPlayerStatus();
                 }
                 case "talk" -> {
-                    System.out.println("You try reasoning with the " + enemy.getName());
+                    System.out.println("You try reasoning with the " + mBoss.getName());
                     roll = roll();
                     if (roll <= 5) {
-                        System.out.println("=== " + enemy.getEnemyIntro() + " ===");
+                        System.out.println("=== " + mBoss.getEnemyIntro() + " ===");
                         System.out.println("What did you expect...");
                     } else {
-                        System.out.println("=== Bass boosted " + enemy.getEnemyIntro() + " ===");
+                        System.out.println("=== Bass boosted " + mBoss.getEnemyIntro() + " ===");
                         System.out.println("Your ears are ringing... >:(");
                     }
                 }
