@@ -113,6 +113,7 @@ public class Combat {
                 }
                 case "bag" -> {
                     System.out.println("You opened your bag");
+                    System.out.println(player.getHpPots());
                     if (player.getHpPots() > 0) {
                         System.out.println("You have " + player.getHpPots() + " Bottle of life(s).");
                         System.out.println("Would you like to use a potion?\n| Yes |\t| No |");
