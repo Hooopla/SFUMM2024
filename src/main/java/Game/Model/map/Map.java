@@ -2,10 +2,15 @@ package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
 import Game.Model.player.character;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Map {
     private Room[][] grid;
     private final int width;
     private final int height;
+
+    private travellingShop Aurelia = new travellingShop();
 
     // Player Tracker
     character player;
@@ -13,8 +18,8 @@ public class Map {
     private int playerYCoordinate;
 
     // Player Last Location Tracker
-    private int lastPlayerXCoordinate;
-    private int lastPlayerYCoordinate;
+    private List<Integer> lastPlayerYCoordinate = new LinkedList<Integer>();
+    private List<Integer> lastPlayerXCoordinate = new LinkedList<Integer>();
 
     public Map(int width, int height, character player) {
         this.width = width;
@@ -37,28 +42,69 @@ public class Map {
 
     private void alphaMap() {
         // Example of setting attributes for specific rooms
+        // STARTING ROOM
         grid[0][4].setExplorable(true);
+
+
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setExplorable(true);
         baseEnemy angrySkeleton = new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5, 5);
         grid[1][4].setEnemyInRoom(angrySkeleton);
-
+        // We meet Aurelia
         grid[2][4].setExplorable(true);
+        grid[2][4].setShopkeeper(Aurelia);
+        //
         grid[3][4].setExplorable(true);
+        //
         grid[4][4].setExplorable(true);
+        //
         grid[5][4].setExplorable(true);
+        //
         grid[6][4].setExplorable(true);
+        //
         grid[7][4].setExplorable(true);
-        grid[8][4].setExplorable(true);
+        //
+        grid[1][5].setExplorable(true);
+        grid[1][6].setExplorable(true);
+        grid[1][7].setExplorable(true);
+
+        //
+        grid[1][3].setExplorable(true);
+        grid[1][2].setExplorable(true);
+        grid[1][1].setExplorable(true);
+        grid[1][0].setExplorable(true);
+        grid[0][0].setExplorable(true);
+
+
+        //
+        grid[5][3].setExplorable(true);
+        grid[5][2].setExplorable(true);
+        grid[5][1].setExplorable(true);
+        grid[4][1].setExplorable(true);
+        grid[3][1].setExplorable(true);
+
+        //
+        grid[6][5].setExplorable(true);
+        grid[6][6].setExplorable(true);
+        grid[5][6].setExplorable(true);
+        grid[4][6].setExplorable(true);
+
+        //
+        grid[7][3].setExplorable(true);
+        grid[7][2].setExplorable(true);
+        grid[7][1].setExplorable(true);
+        grid[7][0].setExplorable(true);
+
+        //
+
+        //
+
     }
 
     private void placePlayer() {
         playerXCoordinate = 4;
         playerYCoordinate = 0;
-        lastPlayerXCoordinate = -1;
-        lastPlayerYCoordinate = -1;
         grid[0][4].setPlayerInRoom(true);
-
     }
 
     public void printMap() {
@@ -83,67 +129,91 @@ public class Map {
     }
 
     public void moveForward() {
-        if (inBounds()) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerYCoordinate++;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-                if(grid[playerYCoordinate][playerXCoordinate].hasEnemyInRoom()) {
-                    enemyEncounter(grid[playerYCoordinate][playerXCoordinate]);
-                }
-            }
-            else {
-                playerYCoordinate--;
-                System.out.println("Ouch I just hit my head on the wall...");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
+        if (!inBounds()) {
+            System.out.println("Cannot move forward. Reached the edge of the map.");
+            return;
+        }
+
+        grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false);
+        lastPlayerYCoordinate.add(playerYCoordinate);
+        lastPlayerXCoordinate.add(playerXCoordinate);
+        playerYCoordinate++;
+
+        Room currentRoom = grid[playerYCoordinate][playerXCoordinate];
+        if (currentRoom.isExplorable()) {
+            currentRoom.setPlayerInRoom(true);
+
+            if (currentRoom.hasEnemyInRoom()) {
+                enemyEncounter(currentRoom);
+            } else if (currentRoom.isTravellingShop()) {
+                shopEncounter(currentRoom);
+            } else if (currentRoom.isExit()) {
+                // Handle exit logic here
             }
         } else {
-            System.out.println("Cannot move forward. Reached the edge of the map.");
+            lastPlayerXCoordinate.remove(playerXCoordinate);
+            lastPlayerYCoordinate.remove(playerYCoordinate);
+            playerYCoordinate--;
+            System.out.println("Ouch! I just hit my head on the wall...");
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
         }
     }
 
     public void moveLeft() {
-        if (playerXCoordinate > 0) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerXCoordinate--;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-            } else {
-                playerXCoordinate++;
-                System.out.println("Ouch, I just bumped into a wall.");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
-            }
-        } else {
+        if (!inBounds() || playerXCoordinate <= 0) {
             System.out.println("Cannot move left. Reached the edge of the map.");
+            return;
+        }
+
+        grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
+        lastPlayerYCoordinate.add(playerYCoordinate);
+        lastPlayerXCoordinate.add(playerXCoordinate);
+        playerXCoordinate--;
+
+        if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
+        } else {
+            lastPlayerXCoordinate.remove(playerXCoordinate);
+            lastPlayerYCoordinate.remove(playerYCoordinate);
+            playerXCoordinate++;
+            System.out.println("Ouch, I just bumped into a wall.");
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
         }
     }
-
     public void moveRight() {
-        if (playerXCoordinate < width - 1) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerXCoordinate++;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-            } else {
-                playerXCoordinate--;
-                System.out.println("Ouch, I just bumped into a wall.");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
-            }
-        } else {
+        if (!inBounds() || playerXCoordinate >= width - 1) {
             System.out.println("Cannot move right. Reached the edge of the map.");
+            return;
+        }
+
+        grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
+        lastPlayerYCoordinate.add(playerYCoordinate);
+        lastPlayerXCoordinate.add(playerXCoordinate);
+
+        playerXCoordinate++;
+
+        if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
+        } else {
+            lastPlayerXCoordinate.remove(playerXCoordinate);
+            lastPlayerYCoordinate.remove(playerYCoordinate);
+            playerXCoordinate--;
+            System.out.println("Ouch, I just bumped into a wall.");
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
         }
     }
 
     public void moveBackwards() {
-        if (lastPlayerXCoordinate == -1 && lastPlayerYCoordinate == -1) {
-            System.out.println("Ouch I just hit the back of my head.");
+        grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false);
+        playerXCoordinate = lastPlayerXCoordinate.removeLast();
+        playerYCoordinate = lastPlayerYCoordinate.removeLast();
+        if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
+            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
         }
-        else {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            grid[lastPlayerYCoordinate][lastPlayerXCoordinate].setPlayerInRoom(true);
-            System.out.println("Look at me I walked backwards");
-        }
+    }
 
+    public boolean inBounds() {
+        return playerXCoordinate >= 0 && playerXCoordinate < width && playerYCoordinate >= 0 && playerYCoordinate < height;
     }
 
     public void enemyEncounter(Room grid) {
@@ -151,7 +221,11 @@ public class Map {
         currentEnemy.sayEnemyIntro();
     }
 
-    public boolean inBounds() {
-        return playerXCoordinate >= 0 && playerXCoordinate < width && playerYCoordinate >= 0 && playerYCoordinate < height;
+    public void shopEncounter(Room grid) {
+        // The first time we meet her
+        travellingShop Aurelia = grid.getShopkeeper();
+        grid.setHasTravellingShop(false);
+        Aurelia.converse();
+        Aurelia.runsOffVoiceLine();
     }
 }

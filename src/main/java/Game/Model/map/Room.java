@@ -8,17 +8,18 @@ public class Room {
     private boolean isPlayerInRoom;
     private baseEnemy enemyInRoom;
     private boolean hasEnemyInRoom;
+    private boolean hasTravellingShop;
+    private travellingShop shopkeeper;
 
     public Room() {
         this.isExit = false;
         this.isExplorable = false;
         this.isPlayerInRoom = false;
         this.hasEnemyInRoom = false;
+        this.hasTravellingShop = false;
     }
 
-    public boolean isExit() {
-        return this.isExit;
-    }
+    // Getters
 
     public boolean isExplorable() {
         return this.isExplorable;
@@ -32,10 +33,23 @@ public class Room {
         return hasEnemyInRoom;
     }
 
+    public boolean isExit() {
+        return this.isExit;
+    }
+
+    public boolean isTravellingShop() {
+        return hasTravellingShop;
+    }
+
     public baseEnemy getEnemyInRoom() {
         return enemyInRoom;
     }
 
+    public travellingShop getShopkeeper() {
+        return shopkeeper;
+    }
+
+    // Setters
     public void setExit(boolean condition) {
         isExit = condition;
     }
@@ -48,9 +62,17 @@ public class Room {
         isPlayerInRoom = condition;
     }
 
+    public void setHasTravellingShop(boolean condition) {
+        this.hasTravellingShop = condition;
+    }
     public void setEnemyInRoom(baseEnemy enemyInRoom) {
         this.enemyInRoom = enemyInRoom;
         hasEnemyInRoom = true;
+    }
+
+    public void setShopkeeper(travellingShop shopkeeper) {
+        this.shopkeeper = shopkeeper;
+        this.hasTravellingShop = true;
     }
 
     // Other methods as needed

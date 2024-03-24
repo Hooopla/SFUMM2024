@@ -23,7 +23,7 @@ public class Alpha {
                     dungeonMap.moveForward();
                     break;
                 case "backwards":
-                    System.out.println("I dont know how to go backwards");
+                    dungeonMap.moveBackwards();
                     break;
                 case "left":
                     dungeonMap.moveLeft();
