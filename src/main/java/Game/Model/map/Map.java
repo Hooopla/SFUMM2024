@@ -177,6 +177,9 @@ public class Map {
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
             this.player.setAlive(battleSequence.getBattleOutcome());
+            if(!this.player.isAlive()) {
+                grid.setContainsPlayer(false);
+            }
         }
         else if(grid.isContainsNPC()) {
             System.out.println("NPC Dialogue");
