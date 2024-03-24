@@ -21,6 +21,9 @@ public class character {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
         this.attPoints = 100;
+        //this.healthPoints = randomizeStartingHP();
+        this.healthPoints = 50;
+        this.attPoints = 10;
         this.currentGold = 0;
         this.alive = true;
         this.hasMetAurelia = false;
