@@ -116,7 +116,7 @@ public class Room {
         return containsNPC;
     }
 
-    private void setContainsNPC(boolean containsNPC) {
+    public void setContainsNPC(boolean containsNPC) {
         this.containsNPC = containsNPC;
     }
 

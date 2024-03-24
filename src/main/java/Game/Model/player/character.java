@@ -7,8 +7,9 @@ public class character {
     private int healthPoints;
     private int attPoints;
     private int currentGold;
-
+    private  boolean hasMetAurelia;
     private boolean alive;
+    private boolean hasKey;
 
     public character(String username) {
         this.username = username;
@@ -17,6 +18,20 @@ public class character {
         this.attPoints = 1000;
         this.currentGold = 0;
         this.alive = true;
+        this.hasMetAurelia = false;
+        this.hasKey = false;
+    }
+
+    public boolean isHasMetAurelia() {
+        return hasMetAurelia;
+    }
+
+    public boolean isHasKey() {
+        return hasKey;
+    }
+
+    public void setHasKey(boolean hasKey) {
+        this.hasKey = hasKey;
     }
 
     public boolean isAlive() {
@@ -25,6 +40,14 @@ public class character {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void setHasMetAurelia(boolean condition) {
+        this.hasMetAurelia = condition;
+    }
+
+    public boolean getHasMetAurelia() {
+        return this.hasMetAurelia;
     }
 
     //getter
@@ -47,8 +70,12 @@ public class character {
     public String setUsername(String username){
         return this.username = username;
     }
-    public int setHealthPoints(int healthPoints){
-        return this.healthPoints = healthPoints;
+    public void setHealthPoints(int healthPoints){
+        this.healthPoints = healthPoints;
+    }
+
+    public void addHealthPoints(int healthPoints) {
+        this.healthPoints += healthPoints;
     }
 
     public int setAttPoints(int attPoints){

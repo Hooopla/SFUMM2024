@@ -218,7 +218,7 @@ public class Map implements GameMessages {
                 grid.setContainsEnemy(false);
             }
         }
-        // Checking for Mini Boss
+        // Checking for Boss
         else if(grid.isContainsBoss()) {
            Combat battleSequence = new Combat(grid.getBossInRoom(), player);
            battleSequence.fightScenarioChecker();
@@ -230,21 +230,11 @@ public class Map implements GameMessages {
                 grid.setContainsBoss(false);
             }
         }
-        // Checking for Final Boss
-        else if(grid.isContainsBoss()) {
-            Combat battleSequence = new Combat(grid.getBossInRoom(), player);
-            battleSequence.fightScenarioChecker();
-            this.player.setAlive(battleSequence.getBattleOutcome());
-            if(!this.player.isAlive()) {
-                grid.setContainsPlayer(false);
-            }
-            else {
-                grid.setContainsBoss(false);
-            }
-        }
         // Checking for NPC
         else if(grid.isContainsNPC()) {
-            System.out.println("NPC Dialogue");
+            grid.setContainsNPC(false);
+            NPC tempNPC = grid.getNpc();
+            tempNPC.converse(player);
         }
         // Checking for SHOP
         else if(grid.isContainsShop()) {
@@ -257,6 +247,17 @@ public class Map implements GameMessages {
             else {
                 System.out.println("Shopkeeper: Come here take a look at me items");
             }
+        }
+        // Checking for the boss door that is locked.
+        else if(grid.isLocked() && player.isHasKey()) {
+            System.out.println("You unlock the door using the key.");
+            grid.setLocked(false);
+        }
+        else if(grid.isLocked() && !player.isHasKey()) {
+            System.out.println("Hmmm the door is stuck or maybe I just need a key?...");
+            grid.setContainsPlayer(false);
+            playerXCoordinate = lastPlayerXCoordinate.removeLast();
+            playerYCoordinate = lastPlayerYCoordinate.removeLast();
         }
         else {
             System.out.println("Just another empty dungeon cell..");
