@@ -194,6 +194,8 @@ public class Map {
             // Call the combat Function
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
+            //
+            // grid.battleSequence.getOutcome();
         }
         else if(grid.isContainsNPC()) {
             //

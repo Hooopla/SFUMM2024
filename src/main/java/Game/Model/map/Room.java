@@ -59,7 +59,7 @@ public class Room {
         return containsEnemy;
     }
 
-    private void setContainsEnemy(boolean containsEnemy) {
+    public void setContainsEnemy(boolean containsEnemy) {
         this.containsEnemy = containsEnemy;
     }
 
