@@ -57,35 +57,55 @@ public class Map {
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setContainsExplorable(true);
         grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "Angry Ratting", 40, 10, 5));
+        grid[1][5].setContainsExplorable(true);
+        grid[1][5].setEnemyInRoom(new baseEnemy("Swole Skeleton", "=== Thicc Rattling ===", 50, 15, 7));
+        grid[1][6].setContainsExplorable(true);
+        grid[1][7].setContainsExplorable(true);
+        grid[1][7].setContainsShop(true);
+        grid[1][3].setContainsExplorable(true);
+        grid[1][3].setEnemyInRoom(new baseEnemy("Smol Golem", "Rock noises", 70, 3, 4));
+        grid[1][2].setContainsExplorable(true);
+        grid[1][2].setEnemyInRoom(new baseEnemy("Girthy Golem", "Who fed Malphite?", 110, 20, 20));
+        grid[1][1].setContainsExplorable(true);
+        grid[1][1].setContainsShop(true);
+        grid[1][0].setContainsExplorable(true);
+        grid[1][0].setLocked(true);
+        //grid[1][0] <-- CONTAINS MINI BOSS
         // We meet Aurelia
         grid[2][4].setContainsExplorable(true);
         grid[2][4].setNpc(Aurelia);
         grid[3][4].setContainsExplorable(true);
+        grid[3][4].setEnemyInRoom(new baseEnemy("Corrupt Chihuahua", "Aggressive Barking", 10, 5, 2));
         grid[4][4].setContainsExplorable(true);
         grid[5][4].setContainsExplorable(true);
+        grid[5][4].setContainsShop(true);
         grid[6][4].setContainsExplorable(true);
-        grid[7][4].setContainsExplorable(true);
-        grid[1][5].setContainsExplorable(true);
-        grid[1][6].setContainsExplorable(true);
-        grid[1][7].setContainsExplorable(true);
-        grid[1][3].setContainsExplorable(true);
-        grid[1][2].setContainsExplorable(true);
-        grid[1][1].setContainsExplorable(true);
-        grid[1][0].setContainsExplorable(true);
+        //grid[6][4] MINI BOSS
+        grid[7][4].setContainsExplorable(true);;
+        //grid[7][4] MINI BOSS
         grid[0][0].setContainsExplorable(true);
+        grid[0][0].setNpc(Aurelia);
         grid[5][3].setContainsExplorable(true);
         grid[5][2].setContainsExplorable(true);
+        grid[5][2].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
+        //grid[4][1] MINI BOSS
         grid[3][1].setContainsExplorable(true);
         grid[6][5].setContainsExplorable(true);
+        grid[6][5].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
+        grid[5][6].setEnemyInRoom(new baseEnemy("Crazed Imp", "Hehehe! giggles mischievously Snicker-snack!", 40, 30, 5));
         grid[4][6].setContainsExplorable(true);
+        //grid[4][6].set
         grid[7][3].setContainsExplorable(true);
+        grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
+        grid[7][1].setNpc(Aurelia);
         grid[7][0].setContainsExplorable(true);
+        // grid[7][0] // FINAL BOSS
     }
     private void placePlayer() {
         playerXCoordinate = 4;
@@ -117,15 +137,24 @@ public class Map {
                 // Print symbols based on room attributes
                 if (room.isContainsExit()) {
                     System.out.print("X ");
+                } else if(room.isLocked()) {
+                    System.out.println("L ");
                 } else if (room.isContainsPlayer()) {
                     System.out.print("P ");
-                } else if (room.isContainsExplorable()) {
-                    System.out.print("E ");
+                } else if (room.isContainsShop()) {
+                    System.out.print("S ");
                 } else if (room.isContainsEnemy()) {
-                    System.out.println("M ");
-                }
-                else {
+                    System.out.print("E ");
+                } else if (room.isContainsMiniBoss()) {
+                    System.out.print("M ");
+                } else if (room.isContainsFinalBoss()) {
+                    System.out.print("F ");
+                } else if (room.isContainsNPC()) {
+                    System.out.print("A ");
+                } else if (room.isContainsExplorable()) {
                     System.out.print(". ");
+                } else {
+                    System.out.print("  ");
                 }
             }
             System.out.println();
@@ -177,6 +206,28 @@ public class Map {
         // Check for Combat
         if(grid.isContainsEnemy()) {
             // Call the combat Function
+            Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
+            battleSequence.startFight();
+            this.player.setAlive(battleSequence.getBattleOutcome());
+            if(!this.player.isAlive()) {
+                grid.setContainsPlayer(false);
+            }
+            else {
+                grid.setContainsEnemy(false);
+            }
+        }
+        else if(grid.isContainsMiniBoss()) {
+           Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
+           battleSequence.startFight();
+            this.player.setAlive(battleSequence.getBattleOutcome());
+            if(!this.player.isAlive()) {
+                grid.setContainsPlayer(false);
+            }
+            else {
+                grid.setContainsEnemy(false);
+            }
+        }
+        else if(grid.isContainsFinalBoss()) {
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
             this.player.setAlive(battleSequence.getBattleOutcome());
