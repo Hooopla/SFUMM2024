@@ -6,6 +6,7 @@ import Game.Model.player.character;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Map implements GameMessages {
     private final Room[][] grid;
@@ -222,6 +223,9 @@ public class Map implements GameMessages {
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
+                if(this.player.isHasKey()) {
+                    grid.setContainsKey(true);
+                }
             }
             else {
                 grid.setContainsEnemy(false);
@@ -234,6 +238,7 @@ public class Map implements GameMessages {
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
+                grid.setContainsKey(true);
             }
             else {
                 grid.setContainsBoss(false);
@@ -259,13 +264,18 @@ public class Map implements GameMessages {
         // Checking for SHOP
         else if(grid.isContainsShop()) {
             GameMessages.printShopKeeper();
-            if(player.getCurrentGold() < 1000000) {
+            if(player.getCurrentGold() == 0) {
                 System.out.println("Shopkeeper: Hey there you! Yes you!! Come take a look you might find things you need...");
                 System.out.println("Shopkeeper: Wait a minute... You have no gold..");
                 System.out.println("*They close up shop...*");
             }
             else {
                 System.out.println("Shopkeeper: Come here take a look at me items");
+                System.out.println("Shop Inventory");
+                System.out.println("1. Bottle of life - 'heals player for 10 health points' (20 gold)");
+                System.out.println("2. A piece of paper - 'This must be useful right?' (15 gold)");
+                System.out.println("3. Exit Shop");
+                Scanner shopPurchase = new Scanner(System.in);
             }
         }
         // Checking for the boss door that is locked.

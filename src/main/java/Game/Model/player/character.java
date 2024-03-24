@@ -10,6 +10,8 @@ public class character {
     private  boolean hasMetAurelia;
     private boolean alive;
     private boolean hasKey;
+    private int hpPots;
+    private int papers;
 
     public character(String username) {
         this.username = username;
@@ -20,6 +22,40 @@ public class character {
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
+        this.hpPots = 0;
+        this.papers = 0;
+    }
+
+    public int getHpPots() {
+        return hpPots;
+    }
+
+    public void setHpPots(int hpPots) {
+        this.hpPots = hpPots;
+    }
+
+    public void addHpPots(int hpPots) {
+        this.hpPots += hpPots;
+    }
+
+    public void removeHpPots(int hpPots) {
+        this.hpPots -= hpPots;
+    }
+
+    public int getPapers() {
+        return papers;
+    }
+
+    public void setPapers(int papers) {
+        this.papers = papers;
+    }
+
+    public void addPaper(int papers) {
+        this.papers += papers;
+    }
+
+    public void removePaper(int papers) {
+        this.papers -= papers;
     }
 
     public boolean isHasMetAurelia() {
