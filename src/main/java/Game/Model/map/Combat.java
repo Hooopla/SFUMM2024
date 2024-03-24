@@ -132,7 +132,7 @@ public class Combat {
                         } else {
                             System.out.println("Invalid response. Please enter 'yes' or 'no'.");
                         }
-                    } else {
+                    } else if(player.getHpPots() <= 0) {
                         System.out.println("Your bag is empty.");
                     }
                 }
