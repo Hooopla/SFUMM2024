@@ -284,19 +284,26 @@ public class Map implements GameMessages {
                         System.out.print(">>");
                         userInput = Integer.parseInt(shopPurchase.nextLine());
                         if (userInput == 1) {
-                            System.out.println("Shopkeeper: Ahh the Bottle of Life a classic...");
-                            System.out.println("+1 Bottle of Life");
-                            player.addHpPots(1);
-                            player.setCurrentGold(player.getCurrentGold() - 20);
-                            break;
+                            if (player.getCurrentGold() > 20) {
+                                System.out.println("Shopkeeper: Ahh the Bottle of Life a classic...");
+                                System.out.println("+1 Bottle of Life");
+                                player.addHpPots(1);
+                                player.setCurrentGold(player.getCurrentGold() - 20);
+                            }
+                            else {
+                                System.out.println("Shopkeeper: You know things like this isn't for free for a reason...");
+                            }
                         }
                         else if (userInput == 2) {
-                            if (player.getCurrentGold() < )
-                            System.out.println("Shopkeeper: People say things you write down this paper may help those in need like yourself!..");
-                            System.out.println("+1 Piece of paper");
-                            player.addPaper(1);
-                            player.setCurrentGold(player.getCurrentGold() - 15);
-                            break;
+                            if (player.getCurrentGold() > 15) {
+                                System.out.println("Shopkeeper: People say things you write down this paper may help those in need like yourself!..");
+                                System.out.println("+1 Piece of paper");
+                                player.addPaper(1);
+                                player.setCurrentGold(player.getCurrentGold() - 15);
+                            }
+                            else {
+                                System.out.println("Shopkeeper: You can't even afford a piece of paper?!?!");
+                            }
                         }
                         else if (userInput == 3) {
                             System.out.println("Shopkeeper: Leaving so soon? Alright then take care.. Don't die out there!!");
