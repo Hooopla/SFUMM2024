@@ -271,11 +271,41 @@ public class Map implements GameMessages {
             }
             else {
                 System.out.println("Shopkeeper: Come here take a look at me items");
-                System.out.println("Shop Inventory");
-                System.out.println("1. Bottle of life - 'heals player for 10 health points' (20 gold)");
-                System.out.println("2. A piece of paper - 'This must be useful right?' (15 gold)");
-                System.out.println("3. Exit Shop");
                 Scanner shopPurchase = new Scanner(System.in);
+                int userInput;
+                boolean Shopping = true;
+                while (Shopping) {
+                    System.out.println("Shop Inventory");
+                    System.out.println("Current Gold: " + player.getCurrentGold());
+                    System.out.println("1. Bottle of life - 'heals player for 10 health points' (20 gold)");
+                    System.out.println("2. A piece of paper - 'This must be useful right?' (15 gold)");
+                    System.out.println("3. Exit Shop");
+                    try {
+                        System.out.print(">>");
+                        userInput = Integer.parseInt(shopPurchase.nextLine());
+                        if (userInput == 1) {
+                            System.out.println("Shopkeeper: Ahh the Bottle of Life a classic...");
+                            System.out.println("+1 Bottle of Life");
+                            player.addHpPots(1);
+                            player.setCurrentGold(player.getCurrentGold() - 20);
+                            break;
+                        }
+                        else if (userInput == 2) {
+                            if (player.getCurrentGold() < )
+                            System.out.println("Shopkeeper: People say things you write down this paper may help those in need like yourself!..");
+                            System.out.println("+1 Piece of paper");
+                            player.addPaper(1);
+                            player.setCurrentGold(player.getCurrentGold() - 15);
+                            break;
+                        }
+                        else if (userInput == 3) {
+                            System.out.println("Shopkeeper: Leaving so soon? Alright then take care.. Don't die out there!!");
+                            Shopping = false;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Shopkeeper: Uhmm I don't quite understand boy? What is it again??");
+                    }
+                }
             }
         }
         // Checking for the boss door that is locked.
