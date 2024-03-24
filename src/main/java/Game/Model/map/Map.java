@@ -57,52 +57,32 @@ public class Map {
         // We meet Aurelia
         grid[2][4].setContainsExplorable(true);
         grid[2][4].setNpc(Aurelia);
-        //
         grid[3][4].setContainsExplorable(true);
-        //
         grid[4][4].setContainsExplorable(true);
-        //
         grid[5][4].setContainsExplorable(true);
-        //
         grid[6][4].setContainsExplorable(true);
-        //
         grid[7][4].setContainsExplorable(true);
-        //
         grid[1][5].setContainsExplorable(true);
         grid[1][6].setContainsExplorable(true);
         grid[1][7].setContainsExplorable(true);
-
-        //
         grid[1][3].setContainsExplorable(true);
         grid[1][2].setContainsExplorable(true);
         grid[1][1].setContainsExplorable(true);
         grid[1][0].setContainsExplorable(true);
         grid[0][0].setContainsExplorable(true);
-
-
-        //
         grid[5][3].setContainsExplorable(true);
         grid[5][2].setContainsExplorable(true);
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
         grid[3][1].setContainsExplorable(true);
-
-        //
         grid[6][5].setContainsExplorable(true);
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
         grid[4][6].setContainsExplorable(true);
-
-        //
         grid[7][3].setContainsExplorable(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
         grid[7][0].setContainsExplorable(true);
-
-        //
-
-        //
-
     }
     private void placePlayer() {
         playerXCoordinate = 4;
