@@ -2,19 +2,24 @@ package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
 import Game.Model.player.character;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Map {
     private Room[][] grid;
     private final int width;
     private final int height;
 
+    private NPC Aurelia = new NPC();
+
     // Player Tracker
-    character player;
+    private character player;
     private int playerXCoordinate;
     private int playerYCoordinate;
 
     // Player Last Location Tracker
-    private int lastPlayerXCoordinate;
-    private int lastPlayerYCoordinate;
+    private List<Integer> lastPlayerYCoordinate = new LinkedList<>();
+    private List<Integer> lastPlayerXCoordinate = new LinkedList<>();
 
     public Map(int width, int height, character player) {
         this.width = width;
@@ -26,9 +31,10 @@ public class Map {
     }
 
     private void initializeMap() {
+        // Initialize all cells with Room objects
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                grid[i][j] = new Room(); // Initialize all cells with Room objects
+                grid[i][j] = new Room();
             }
         }
         // Place obstacles or special tiles on the map as needed
@@ -37,44 +43,80 @@ public class Map {
 
     private void alphaMap() {
         // Example of setting attributes for specific rooms
-        grid[0][4].setExplorable(true);
+        // STARTING ROOM
+        grid[0][4].setContainsExplorable(true);
+
+
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
-        grid[1][4].setExplorable(true);
-        baseEnemy angrySkeleton = new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5);
-        grid[1][4].setEnemyInRoom(angrySkeleton);
+        grid[1][4].setContainsExplorable(true);
+        grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "=== Angry Ratting ===", 40, 10, 5));
+        // We meet Aurelia
+        grid[2][4].setContainsExplorable(true);
+        grid[2][4].setNpc(Aurelia);
+        //
+        grid[3][4].setContainsExplorable(true);
+        //
+        grid[4][4].setContainsExplorable(true);
+        //
+        grid[5][4].setContainsExplorable(true);
+        //
+        grid[6][4].setContainsExplorable(true);
+        //
+        grid[7][4].setContainsExplorable(true);
+        //
+        grid[1][5].setContainsExplorable(true);
+        grid[1][6].setContainsExplorable(true);
+        grid[1][7].setContainsExplorable(true);
 
-        grid[2][4].setExplorable(true);
-        grid[3][4].setExplorable(true);
-        grid[4][4].setExplorable(true);
-        grid[5][4].setExplorable(true);
-        grid[6][4].setExplorable(true);
-        grid[7][4].setExplorable(true);
-        grid[8][4].setExplorable(true);
+        //
+        grid[1][3].setContainsExplorable(true);
+        grid[1][2].setContainsExplorable(true);
+        grid[1][1].setContainsExplorable(true);
+        grid[1][0].setContainsExplorable(true);
+        grid[0][0].setContainsExplorable(true);
+
+
+        //
+        grid[5][3].setContainsExplorable(true);
+        grid[5][2].setContainsExplorable(true);
+        grid[5][1].setContainsExplorable(true);
+        grid[4][1].setContainsExplorable(true);
+        grid[3][1].setContainsExplorable(true);
+
+        //
+        grid[6][5].setContainsExplorable(true);
+        grid[6][6].setContainsExplorable(true);
+        grid[5][6].setContainsExplorable(true);
+        grid[4][6].setContainsExplorable(true);
+
+        //
+        grid[7][3].setContainsExplorable(true);
+        grid[7][2].setContainsExplorable(true);
+        grid[7][1].setContainsExplorable(true);
+        grid[7][0].setContainsExplorable(true);
+
+        //
+
+        //
+
     }
-
     private void placePlayer() {
         playerXCoordinate = 4;
         playerYCoordinate = 0;
-        lastPlayerXCoordinate = -1;
-        lastPlayerYCoordinate = -1;
-        grid[0][4].setPlayerInRoom(true);
-
+        grid[0][4].setContainsPlayer(true);
     }
 
     public void printMap() {
         for (Room[] row : grid) {
             for (Room room : row) {
                 // Print symbols based on room attributes
-                if (room.isExit()) {
+                if (room.isContainsExit()) {
                     System.out.print("X ");
-                }
-                else if(room.isPlayerInRoom()) {
+                } else if (room.isContainsPlayer()) {
                     System.out.print("P ");
-                }
-                else if (room.isExplorable()) {
+                } else if (room.isContainsExplorable()) {
                     System.out.print("E ");
-                }
-                else {
+                } else {
                     System.out.print(". ");
                 }
             }
@@ -82,80 +124,76 @@ public class Map {
         }
     }
 
-    public void moveForward() {
-        if (inBounds()) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerYCoordinate++;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-                if(grid[playerYCoordinate][playerXCoordinate].hasEnemyInRoom()) {
-                    System.out.println("THERE IS AN ENEMY HERE");
-                    enemyEncounter(grid[playerYCoordinate][playerXCoordinate]);
+    public void printDebugMap() {
+        for (Room[] row : grid) {
+            for (Room room : row) {
+                // Print symbols based on room attributes
+                if (room.isContainsExit()) {
+                    System.out.print("X ");
+                } else if (room.isContainsPlayer()) {
+                    System.out.print("P ");
+                } else if (room.isContainsExplorable()) {
+                    System.out.print("E ");
+                } else {
+                    System.out.print(". ");
                 }
             }
-            else {
-                playerYCoordinate--;
-                System.out.println("Ouch I just hit my head on the wall...");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
-            }
+            System.out.println();
+        }
+    }
+
+    public void move(Direction direction) {
+        int newX = playerXCoordinate;
+        int newY = playerYCoordinate;
+
+        switch (direction) {
+            case UP:
+                newY--;
+                break;
+            case DOWN:
+                newY++;
+                break;
+            case LEFT:
+                newX--;
+                break;
+            case RIGHT:
+                newX++;
+                break;
+            default:
+                System.out.println("Invalid direction.");
+                return;
+        }
+
+        if (isValidMove(newX, newY)) {
+            movePlayerToRoom(newX, newY);
         } else {
-            System.out.println("Cannot move forward. Reached the edge of the map.");
+            System.out.println("Cannot move in that direction.");
         }
     }
 
-    public void moveLeft() {
-        if (playerXCoordinate > 0) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerXCoordinate--;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-            } else {
-                playerXCoordinate++;
-                System.out.println("Ouch, I just bumped into a wall.");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
-            }
-        } else {
-            System.out.println("Cannot move left. Reached the edge of the map.");
-        }
+    private boolean isValidMove(int x, int y) {
+        return x >= 0 && x < width && y >= 0 && y < height && grid[y][x].isContainsExplorable();
     }
 
-    public void moveRight() {
-        if (playerXCoordinate < width - 1) {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            playerXCoordinate++;
-            if (grid[playerYCoordinate][playerXCoordinate].isExplorable()) {
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true); // Place player at new position
-            } else {
-                playerXCoordinate--;
-                System.out.println("Ouch, I just bumped into a wall.");
-                grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(true);
-            }
-        } else {
-            System.out.println("Cannot move right. Reached the edge of the map.");
-        }
+    private void movePlayerToRoom(int newX, int newY) {
+        grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(false);
+        lastPlayerYCoordinate.add(playerYCoordinate);
+        lastPlayerXCoordinate.add(playerXCoordinate);
+        playerXCoordinate = newX;
+        playerYCoordinate = newY;
+        grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(true);
+        checkForEvents(grid[playerYCoordinate][playerXCoordinate]);
     }
 
-    public void moveBackwards() {
-        if (lastPlayerXCoordinate == -1 && lastPlayerYCoordinate == -1) {
-            System.out.println("Ouch I just hit the back of my head.");
+    private void checkForEvents(Room grid) {
+        // Check for Combat
+        if(grid.isContainsEnemy()) {
+            // Call the combat Function
+            System.out.println("Call combat function");
         }
-        else {
-            grid[playerYCoordinate][playerXCoordinate].setPlayerInRoom(false); // Clear current player position
-            grid[lastPlayerYCoordinate][lastPlayerXCoordinate].setPlayerInRoom(true);
-            System.out.println("Look at me I walked backwards");
+        else if(grid.isContainsNPC()) {
+            //
+            System.out.println("NPC Dialogue");
         }
-
-    }
-
-    public void enemyEncounter(Room grid) {
-        baseEnemy currentEnemy = grid.getEnemyInRoom();
-        Combat battle = new Combat(currentEnemy, player);
-        currentEnemy.sayEnemyIntro();
-        //throw down
-        battle.startFight();
-    }
-
-    public boolean inBounds() {
-        return playerXCoordinate >= 0 && playerXCoordinate < width && playerYCoordinate >= 0 && playerYCoordinate < height;
     }
 }
