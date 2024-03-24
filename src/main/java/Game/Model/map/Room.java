@@ -14,6 +14,8 @@ public class Room {
     private boolean containsNPC;
     private boolean containsBoss;
     private boolean containsShop;
+
+    private boolean containsKey;
     private boolean locked;
 
     private NPC npc;
@@ -28,6 +30,7 @@ public class Room {
         containsBoss = false;
         containsShop = false;
         locked = false;
+        containsKey = false;
     }
 
     public boolean isLocked() {
@@ -40,6 +43,14 @@ public class Room {
 
     public boolean isContainsShop() {
         return containsShop;
+    }
+
+    public boolean isContainsKey() {
+        return containsKey;
+    }
+
+    public void setContainsKey(boolean containsKey) {
+        this.containsKey = containsKey;
     }
 
     public void setContainsShop(boolean containsShop) {

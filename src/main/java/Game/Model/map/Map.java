@@ -110,6 +110,7 @@ public class Map implements GameMessages {
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
+        grid[7][2].setContainsKey(true);
         grid[7][1].setContainsExplorable(true);
         //grid[7][0]
         grid[7][0].setContainsExplorable(true);
@@ -157,6 +158,8 @@ public class Map implements GameMessages {
                     System.out.print("B ");
                 } else if (room.isContainsNPC()) {
                     System.out.print("A ");
+                } else if (room.isContainsKey()) {
+                    System.out.print("K ");
                 } else if (room.isContainsExplorable()) {
                     System.out.print(". ");
                 } else {
@@ -247,6 +250,11 @@ public class Map implements GameMessages {
             else if(scenario == 2) {
                 this.grid[7][1].setNpc(Aurelia);
             }
+        }
+        else if(grid.isContainsKey()) {
+            System.out.println("You found a key!");
+            grid.setContainsKey(false);
+            player.setHasKey(true);
         }
         // Checking for SHOP
         else if(grid.isContainsShop()) {
