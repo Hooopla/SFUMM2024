@@ -68,16 +68,17 @@ public class Combat {
                         isBossEnraged = true; // Set the flag to true to indicate that the boss has been enraged
                     }
                     if(mBoss.getHp() <= 0){
-                        System.out.println("You have defeated the " + mBoss.getName() + "!");
+                        System.out.println(mBoss.getDefeatMsg());
+                        System.out.println("\nYou have defeated " + mBoss.getName() + "!");
                         player.setCurrentGold(player.getCurrentGold() + mBoss.getGoldDrop());
                         System.out.println("You have gained " + mBoss.getGoldDrop() + " gold from the " + mBoss.getName() + "!");
                         setBattleOutcome(true);
                         return;
                     }
-                    mBoss.printEnemyInfo();
 
                     //if enemy is not dead
                     if (mBoss.getHp() > 0) {
+                        mBoss.printEnemyInfo();
                         //enemy attack
                         System.out.println("===" + mBoss.getName() + "'s Turn ===");
                         player.setHealthPoints(player.getHealthPoints() - mBoss.getAttPower());
