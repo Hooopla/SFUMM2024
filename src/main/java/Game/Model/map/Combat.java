@@ -3,6 +3,8 @@ import Game.Model.enemy.baseEnemy;
 import Game.Model.enemy.miniBoss;
 import Game.Model.player.character;
 import Game.Model.map.Room;
+
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -42,10 +44,11 @@ public class Combat {
         }
     }
     private void startBossFight() {
-        System.out.println("MBOSS");
+        System.out.println(mBoss.getEnemyIntro());
         mBoss.printEnemyInfo();
         System.out.println(mBoss.getBossOST() + "\nYou brace yourself for a difficult battle.");
         int maxHp = mBoss.getHp();
+        boolean isBossEnraged = false;
 
         while (mBoss.getHp() > 0 && player.getHealthPoints() > 0){
             //print status
@@ -59,8 +62,10 @@ public class Combat {
                     mBoss.setHp(mBoss.getHp() - player.getAttPoints());
                     //enemy.printEnemyInfo();
                     //check if enemy is dead
-                    if(mBoss.getHp() < maxHp/2){
+                    // Check if boss is under 50% HP and hasn't been enraged before
+                    if (mBoss.getHp() < maxHp / 2 && !isBossEnraged) {
                         mBoss.enrage();
+                        isBossEnraged = true; // Set the flag to true to indicate that the boss has been enraged
                     }
                     if(mBoss.getHp() <= 0){
                         System.out.println("You have defeated the " + mBoss.getName() + "!");
@@ -81,8 +86,8 @@ public class Combat {
 
                         //if player is deadge
                         if(player.getHealthPoints() <= 0){
-                            System.out.println("u ded");
-                            System.out.println(mBoss.getName() + ": For my lady's painting.");
+                            System.out.println("You Died");
+                            System.out.println(mBoss.getName() + ": " + mBoss.getKillPlayerMsg());
                             return;
                         }
 
@@ -90,14 +95,19 @@ public class Combat {
                     player.printPlayerStatus();
                 }
                 case "talk" -> {
-                    System.out.println("You try reasoning with the " + mBoss.getName());
-                    roll = roll();
-                    if (roll <= 5) {
-                        System.out.println("=== " + mBoss.getEnemyIntro() + " ===");
-                        System.out.println("What did you expect...");
-                    } else {
-                        System.out.println("=== Bass boosted " + mBoss.getEnemyIntro() + " ===");
-                        System.out.println("Your ears are ringing... >:(");
+                    if(Objects.equals(mBoss.getName(), "Slave Knight Gael") || Objects.equals(mBoss.getName(), "Malenia, Blade of Miquella")){
+                        System.out.println("Now is not the time for that!");
+                    }
+                    else {
+                        System.out.println("You try reasoning with " + mBoss.getName());
+                        roll = roll();
+                        if (roll <= 5) {
+                            System.out.println("=== " + mBoss.getEnemyIntro() + " ===");
+                            System.out.println("What did you expect...");
+                        } else {
+                            System.out.println("=== Bass boosted " + mBoss.getEnemyIntro() + " ===");
+                            System.out.println("Your ears are ringing... >:(");
+                        }
                     }
                 }
                 case "bag" ->
@@ -152,14 +162,18 @@ public class Combat {
                     player.printPlayerStatus();
                 }
                 case "talk" -> {
-                    System.out.println("You try reasoning with the " + enemy.getName());
-                    roll = roll();
-                    if (roll <= 5) {
-                        System.out.println("=== " + enemy.getEnemyIntro() + " ===");
-                        System.out.println("What did you expect...");
-                    } else {
-                        System.out.println("=== Bass boosted " + enemy.getEnemyIntro() + " ===");
-                        System.out.println("Your ears are ringing... >:(");
+                    if(Objects.equals(mBoss.getName(), "Slave Knight Gael") || Objects.equals(mBoss.getName(), "Malenia, Blade of Miquella"))
+                        System.out.println("Now is not the time for that!");
+                    else {
+                        System.out.println("You try reasoning with the " + enemy.getName());
+                        roll = roll();
+                        if (roll <= 5) {
+                            System.out.println("=== " + enemy.getEnemyIntro() + " ===");
+                            System.out.println("What did you expect...");
+                        } else {
+                            System.out.println("=== Bass boosted " + enemy.getEnemyIntro() + " ===");
+                            System.out.println("Your ears are ringing... >:(");
+                        }
                     }
                 }
                 case "bag" ->

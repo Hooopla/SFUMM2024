@@ -81,10 +81,15 @@ public class Map implements GameMessages {
         grid[4][4].setContainsExplorable(true);
         grid[5][4].setContainsExplorable(true);
         grid[5][4].setContainsShop(true);
+
         grid[6][4].setContainsExplorable(true);
-        //grid[6][4] MINI BOSS
+        grid[6][4].setBossInRoom(new miniBoss("Haligtree Knight Loretta", "*Glintstone Phalanx noises", 100, 20, 50, "Knight of the Haligtree", "*Loretta's Mastery noises", "Great Enemy Felled", "..."));
+        //grid[6][4] MINI BOSS Haligtree Knight Loretta
+
         grid[7][4].setContainsExplorable(true);
-        //grid[7][4] MINI BOSS
+        grid[7][4].setBossInRoom(new miniBoss("Malenia, Blade of Miquella", "| Heed my words. | \n| I am Malenia. Blade of Miquella |\n| And I have never known defeat.|", 100, 20, 50, "Malenia, Blade of Miquella", "| Wait. |\n| The scarlet bloom flowers once more |\n| You will witness true horror. |\n| Now, rot! |", "| Your Strength, extraordinary... |\n| O, dearest Miquella |\n| I'm sorry. I finally met my match... |", "I am Malenia, Blade of Miquella..."));
+        //grid[7][4] MINI BOSS Malenia :huh:
+
         grid[0][0].setContainsExplorable(true);
         grid[5][3].setContainsExplorable(true);
         grid[5][2].setContainsExplorable(true);
@@ -98,14 +103,17 @@ public class Map implements GameMessages {
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
         grid[5][6].setEnemyInRoom(new baseEnemy("Crazed Imp", "Hehehe! giggles mischievously Snicker-snack!", 40, 30, 5));
+
         grid[4][6].setContainsExplorable(true);
-        //grid[4][6].set
+        //grid[4][6] boss darkeater midir
+
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
+        //grid[7][0]
         grid[7][0].setContainsExplorable(true);
-        // grid[7][0] // FINAL BOSS
+        grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "What, still here?", 100, 20, 50, "The Ringed City - Slave Knight Gael", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Soul of slave knight gael", "For my lady's painting."));
     }
     private void placePlayer() {
         playerXCoordinate = 4;
