@@ -11,11 +11,15 @@ import static java.lang.Thread.sleep;
 public class Combat {
     baseEnemy enemy;
     character player;
-    int damage;
+    boolean battleOutcome;
     int roll;
+    public boolean getBattleOutcome(){
+        return this.battleOutcome;
+    }
     public Combat(baseEnemy enemy123, character player) {
         enemy = enemy123;
         this.player = player;
+        this.battleOutcome = false;
 }
     //while in combat
     public void startFight() {
