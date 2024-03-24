@@ -53,7 +53,7 @@ public class AlphaV2 implements  GameMessages {
                         GameMessages.printMapText();
                         dungeonMap.printDebugMap(); // <-- DEBUG MAP
                         System.out.println("-----------------------------------------------------");
-                        System.out.println("Choose a direction: (up | down | left | right)");
+                        System.out.println("Choose a direction: (UP | DOWN | LEFT | RIGHT)");
                         System.out.println("-----------------------------------------------------");
 
                         String playerControl = movement.nextLine().toLowerCase().replaceAll("\\s", "");
