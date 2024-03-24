@@ -76,16 +76,16 @@ public class Map implements GameMessages {
         grid[5][4].setContainsExplorable(true);
         grid[5][4].setContainsShop(true);
         grid[6][4].setContainsExplorable(true);
-        grid[6][4].setBossInRoom(new miniBoss("Haligtree Knight Loretta", "Glintstone Phalanx noises", 100, 15, 30, "Knight of the Haligtree", "More Glintstone Phalanx noises", "Great Enemy Felled", "..."));
+        grid[6][4].setBossInRoom(new miniBoss("Haligtree Knight Loretta", "Glintstone Phalanx noises", 100, 15, 30, "https://youtube.com/clip/UgkxoGUZT3odufQiXrqvskNPefZ83Ye5mYXB?si=kv3uWobWgIYvEdLv", "More Glintstone Phalanx noises", "Great Enemy Felled", "..."));
         grid[7][4].setContainsExplorable(true);
-        grid[7][4].setBossInRoom(new miniBoss("Malenia, Blade of Miquella", "| Heed my words. | \n| I am Malenia. Blade of Miquella |\n| And I have never known defeat.|", 140, 20, 50, "Malenia, Blade of Miquella", "| Wait. |\n| The scarlet bloom flowers once more |\n| You will witness true horror. |\n| Now, rot! |", "| Your Strength, extraordinary... |\n| O, dearest Miquella |\n| I'm sorry. I finally met my match... |", "I am Malenia, Blade of Miquella..."));
+        grid[7][4].setBossInRoom(new miniBoss("Malenia, Blade of Miquella", "| Heed my words. | \n| I am Malenia. Blade of Miquella |\n| And I have never known defeat.|", 140, 20, 50, "https://youtube.com/clip/UgkxvaWb2lM2eXldXNd0g9izWJNX01BvBjo_?si=Zc9vYnPdMbYBBhKx", "| Wait. |\n| The scarlet bloom flowers once more |\n| You will witness true horror. |\n| Now, rot! |", "| Your Strength, extraordinary... |\n| O, dearest Miquella |\n| I'm sorry. I finally met my match... |", "I am Malenia, Blade of Miquella..."));
         grid[0][0].setContainsExplorable(true);
         grid[5][3].setContainsExplorable(true);
         grid[6][5].setContainsExplorable(true);
         grid[6][5].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
-        grid[4][1].setBossInRoom(new miniBoss("Asylum Demon", "| asylum text |", 100, 10, 15, "Tarus Demon", "*Slams into the ground", "Victory Achieved", "..."));
+        grid[4][1].setBossInRoom(new miniBoss("Asylum Demon", "| asylum text |", 100, 10, 15, "https://youtube.com/clip/Ugkxj1UljBYvmZpe0-Ex360kKwxAetCY11tZ?si=1-iMfc807tWDS81x", "*Slams into the ground", "Victory Achieved", "..."));
         grid[3][1].setContainsExplorable(true);
         grid[3][1].setContainsKey(true);
         grid[5][2].setContainsExplorable(true);
@@ -94,13 +94,13 @@ public class Map implements GameMessages {
         grid[5][6].setContainsExplorable(true);
         grid[5][6].setEnemyInRoom(new baseEnemy("Crazed Imp", "Hehehe! giggles mischievously Snicker-snack!", 40, 30, 5));
         grid[4][6].setContainsExplorable(true);
-        grid[4][6].setBossInRoom(new miniBoss("Darkeater Midir", "*Laser Beam Intensifies", 200, 30, 70, "The Ringed City - Darkeater Midir", "GNAAAAAH!", "Heir of the Dungeon Destroyed", "*ROARS*"));
+        grid[4][6].setBossInRoom(new miniBoss("Darkeater Midir", "*Laser Beam Intensifies", 200, 30, 70, "https://youtube.com/clip/Ugkx-Qlduq_alWcBw8KmDTDdJzpgK_obHyF7?si=ntBrQ9CBx0dryZhE", "GNAAAAAH!", "Heir of the Dungeon Destroyed", "*ROARS*"));
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
         grid[7][0].setContainsExplorable(true);
-        grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "| What, still here?|\n| Hand it over. That thing, your dark soul |\n| For my lady's painting. |", 100, 20, 50, "The Ringed City - Slave Knight Gael", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Heir of the Dungeon Destroyed", "For my lady's painting."));
+        grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "| What, still here?|\n| Hand it over. That thing, your dark soul |\n| For my lady's painting. |", 100, 20, 50, "https://youtube.com/clip/UgkxUP3H294Ng84fwUND4IWch6scb7RTaoWS?si=eoceIbw3wI2I6hsv", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Heir of the Dungeon Destroyed", "For my lady's painting."));
         grid[7][0].setContainsExit(true);
     }
     private void placePlayer() {
