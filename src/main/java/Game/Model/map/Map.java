@@ -246,6 +246,9 @@ public class Map implements GameMessages {
             }
             else {
                 grid.setContainsBoss(false);
+                if(grid.isContainsExit()) {
+                    System.out.println("ENDING SHIT IS HERE");
+                }
             }
         }
         // Checking for NPC
@@ -329,9 +332,6 @@ public class Map implements GameMessages {
             grid.setContainsPlayer(false);
             playerXCoordinate = lastPlayerXCoordinate.removeLast();
             playerYCoordinate = lastPlayerYCoordinate.removeLast();
-        }
-        else if(grid.isContainsExit()) {
-
         }
         else {
             System.out.println("Just another empty dungeon cell..");
