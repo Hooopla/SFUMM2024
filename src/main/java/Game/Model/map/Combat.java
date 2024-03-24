@@ -146,7 +146,7 @@ public class Combat {
     }
 
     private void startFight() {
-        System.out.println("NORMAL ENEMY");
+        System.out.println(enemy.getEnemyIntro());
         enemy.printEnemyInfo();
         while (enemy.getHp() > 0 && player.getHealthPoints() > 0){
             //print status
