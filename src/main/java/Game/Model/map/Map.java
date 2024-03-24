@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Map implements GameMessages {
-    private Room[][] grid;
+    private final Room[][] grid;
     private final int width;
     private final int height;
 
-    private NPC Aurelia = new NPC();
+    private final NPC Aurelia = new NPC();
 
     // Player Tracker
     private character player;
@@ -82,7 +82,7 @@ public class Map implements GameMessages {
         grid[5][4].setContainsShop(true);
         grid[6][4].setContainsExplorable(true);
         //grid[6][4] MINI BOSS
-        grid[7][4].setContainsExplorable(true);;
+        grid[7][4].setContainsExplorable(true);
         //grid[7][4] MINI BOSS
         grid[0][0].setContainsExplorable(true);
         grid[0][0].setNpc(Aurelia);
@@ -204,9 +204,10 @@ public class Map implements GameMessages {
     }
 
     private void checkForEvents(Room grid) {
+        GameMessages.clearScreen();
         // Checking for Basic Enemy
         if(grid.isContainsEnemy()) {
-            GameMessages.clearScreen();
+            GameMessages.printCombatText();
             System.out.println("You stumble into an enemy..");
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
@@ -248,6 +249,7 @@ public class Map implements GameMessages {
         }
         // Checking for SHOP
         else if(grid.isContainsShop()) {
+            GameMessages.printShopKeeper();
             if(player.getCurrentGold() < 1000000) {
                 System.out.println("Shopkeeper: Hey there you! Yes you!! Come take a look you might find things you need...");
                 System.out.println("Shopkeeper: Wait a minute... You have no gold..");
@@ -256,6 +258,9 @@ public class Map implements GameMessages {
             else {
                 System.out.println("Shopkeeper: Come here take a look at me items");
             }
+        }
+        else {
+            System.out.println("Just another empty dungeon cell..");
         }
     }
 }

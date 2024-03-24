@@ -17,12 +17,12 @@ public class AlphaV2 implements  GameMessages {
         // Continuous input loop
         while (ApplicationRunning) {
             System.out.println("\n" +
-                    "________   ____ __________    ___________________________    _______    _________\n" +
-                    "\\______ \\ |    |   \\      \\  /  _____/\\_   _____/\\_____  \\   \\      \\  /   _____/\n" +
-                    " |    |  \\|    |   /   |   \\/   \\  ___ |    __)_  /   |   \\  /   |   \\ \\_____  \\ \n" +
-                    " |    `   \\    |  /    |    \\    \\_\\  \\|        \\/    |    \\/    |    \\/        \\\n" +
-                    "/_______  /______/\\____|__  /\\______  /_______  /\\_______  /\\____|__  /_______  /\n" +
-                    "        \\/                \\/        \\/        \\/         \\/         \\/        \\/ \n");
+                    "                                                 \n" +
+                    " ____   _____  _____  _____  _____  _____  _____ \n" +
+                    "|    \\ |  |  ||   | ||   __||   __||     ||   | |\n" +
+                    "|  |  ||  |  || | | ||  |  ||   __||  |  || | | |\n" +
+                    "|____/ |_____||_|___||_____||_____||_____||_|___|\n" +
+                    "                                                 \n");
             GameMessages.titleScreen();
             System.out.print(">>");
             String input = scanner.nextLine();
@@ -48,7 +48,7 @@ public class AlphaV2 implements  GameMessages {
                         System.out.println("Press Enter to continue...");
                         movement.nextLine();
                         GameMessages.clearScreen();
-
+                        GameMessages.printMapText();
                         dungeonMap.printDebugMap(); // <-- DEBUG MAP
                         System.out.println("-----------------------------------------------------");
                         System.out.println("Choose a direction: (up | down | left | right)");

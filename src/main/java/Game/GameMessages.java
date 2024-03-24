@@ -21,6 +21,56 @@ public interface GameMessages{
     }
 
     static void clearScreen() {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
+    static void printMapText() {
+        System.out.println("""
+
+                                    \s
+                 _____  _____  _____\s
+                |     ||  _  ||  _  |
+                | | | ||     ||   __|
+                |_|_|_||__|__||__|  \s
+                                    \s
+                """);
+    }
+
+    static void printCombatText() {
+        System.out.println("""
+
+                                                         \s
+                 _____  _____  _____  _____  _____  _____\s
+                |     ||     ||     || __  ||  _  ||_   _|
+                |   --||  |  || | | || __ -||     |  | | \s
+                |_____||_____||_|_|_||_____||__|__|  |_| \s
+                                                         \s
+                """);
+    }
+    static void printShopKeeper() {
+        System.out.println("""
+                       .-""-.
+                      /-.{}  \\
+                      | _\\__.|
+                      \\/^)^ \\/
+                       \\ =  /
+                  .---./`--`\\.--._
+                 /     `;--'`     \\
+                ;        /`       ;
+                |       |*        |
+                /   |   |     |    \\
+                |    \\  |*    /    |
+                \\_   |\\_|____/|  __/
+                  \\__//======\\\\__/
+                  / //_      _\\\\ \\
+                  -'  |`""\""`|  `-
+                      |  L   |
+                      >_ || _<
+                      |  ||  |
+                      |  ||  |
+                     /   ||   \\
+                    /    /,    \\
+                     `|"|`"|"|"`
+                     /  )  /  )  nic/jgs
+                    /__/  /__/""");
     }
 }
