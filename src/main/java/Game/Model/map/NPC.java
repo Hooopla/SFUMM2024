@@ -16,16 +16,21 @@ public class NPC {
                     " in these forgotten depths. I'm Aurelia Nightshade, " +
                     "just a humble traveler offering a few odds and ends from my journeys. ");
             player.setHasMetAurelia(true);
+            inBossRoom = true;
             return 1;
         }
         // CASE 2: PLAYER MEETS HER IN THE DUNGEON AND SHE IS ALREADY CAUGHT
         else if(!player.getHasMetAurelia() && inBossRoom) {
             System.out.println("Aurelia: Thank you for ridding us of the terror that was Seith the Scalist. We are forever grateful for your bravery and valor.");
             player.setHasMetAurelia(true);
+            inBossRoom = false;
+            saved = true;
             return 2;
         }
         else if(player.isHasMetAurelia() && inBossRoom) {
             System.out.println("Aurelia: It's you again thank goodness. I thought you got lost into the shadows of this dungeon.");
+            inBossRoom = false;
+            saved = true;
             return 2;
         }
         else if(player.getHasMetAurelia() && saved) {
