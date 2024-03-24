@@ -336,7 +336,7 @@ public class Map implements GameMessages {
                             Shopping = false;
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Shopkeeper: Uhmm I don't quite understand boy? What is it again??");
+                        System.out.println("Shopkeeper: Uhmm I don't quite understand... Speak up!!! What is it again??");
                     }
                 }
             }
