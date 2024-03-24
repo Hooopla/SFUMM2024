@@ -107,7 +107,6 @@ public class Combat {
     private void startFight() {
         System.out.println("NORMAL ENEMY");
         enemy.printEnemyInfo();
-        
         while (enemy.getHp() > 0 && player.getHealthPoints() > 0){
             //print status
             Scanner action = new Scanner(System.in);
