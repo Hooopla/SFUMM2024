@@ -35,10 +35,9 @@ public class Combat {
 
             switch (command) {
                 case "attack" -> {
-                    //damage calc shit thingy
                     System.out.println("You attacked the " + enemy.getName() + " for " + player.getAttPoints() + " damage!");
                     enemy.setHp(enemy.getHp() - player.getAttPoints());
-                    enemy.printEnemyInfo();
+                    //enemy.printEnemyInfo();
                     //check if enemy is dead
                     if(enemy.getHp() <= 0){
                         System.out.println("You have defeated the " + enemy.getName() + "!");
@@ -47,6 +46,7 @@ public class Combat {
                         setBattleOutcome(true);
                         return;
                     }
+                    enemy.printEnemyInfo();
 
                     //if enemy is not dead
                     if (enemy.getHp() > 0) {
@@ -54,7 +54,7 @@ public class Combat {
                         System.out.println("===" + enemy.getName() + "'s Turn ===");
                         player.setHealthPoints(player.getHealthPoints() - enemy.getAttPower());
                         System.out.println(enemy.getName() + " backhanded you for " + enemy.getAttPower() + " damage!\n");
-                        player.printPlayerStatus();
+                        //player.printPlayerStatus();
 
                         //if player is deadge
                         if(player.getHealthPoints() <= 0){
@@ -63,6 +63,7 @@ public class Combat {
                         }
 
                     }
+                    player.printPlayerStatus();
                 }
                 case "talk" -> {
                     System.out.println("You try reasoning with the " + enemy.getName());
