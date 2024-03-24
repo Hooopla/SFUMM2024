@@ -24,7 +24,7 @@ public class character {
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
-        this.hpPots = 0;
+        this.hpPots = 2;
         this.papers = 0;
     }
 
