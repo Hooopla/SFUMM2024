@@ -1,6 +1,7 @@
 package Game.Model.player;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class character {
     private String username;
@@ -12,6 +13,8 @@ public class character {
     private boolean hasKey;
     private int hpPots;
     private int papers;
+
+    private String chant;
 
     public character(String username) {
         this.username = username;
@@ -26,6 +29,18 @@ public class character {
         this.hasKey = false;
         this.hpPots = 0;
         this.papers = 0;
+        createChant();
+    }
+
+    private void createChant() {
+        Scanner chant = new Scanner(System.in);
+        System.out.print("Create your characters chant: ");
+        this.chant = chant.nextLine();
+        this.chant.trim();
+    }
+
+    private String getChant() {
+        return this.chant;
     }
 
     public int getHpPots() {

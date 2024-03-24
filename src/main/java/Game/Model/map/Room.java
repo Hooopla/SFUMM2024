@@ -18,6 +18,10 @@ public class Room {
     private boolean containsKey;
     private boolean locked;
 
+    private boolean containsMessage = false;
+
+    private String message;
+
     private NPC npc;
 
     public Room() {
@@ -31,6 +35,23 @@ public class Room {
         containsShop = false;
         locked = false;
         containsKey = false;
+        containsMessage = false;
+    }
+
+    public boolean isContainsMessage() {
+        return containsMessage;
+    }
+
+    public void setContainsMessage(boolean containsMessage) {
+        this.containsMessage = containsMessage;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public boolean isLocked() {

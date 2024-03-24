@@ -116,6 +116,7 @@ public class Map implements GameMessages {
         //grid[7][0]
         grid[7][0].setContainsExplorable(true);
         grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "| What, still here?|\n| Hand it over. That thing, your dark soul |\n| For my lady's painting. |", 100, 20, 50, "The Ringed City - Slave Knight Gael", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Soul of slave knight gael", "For my lady's painting."));
+        grid[7][0].setContainsExit(true);
     }
     private void placePlayer() {
         playerXCoordinate = 4;
@@ -226,6 +227,9 @@ public class Map implements GameMessages {
                 if(this.player.isHasKey()) {
                     grid.setContainsKey(true);
                 }
+                if(this.player.getPapers() != 0) {
+                    System.out.println("");
+                }
             }
             else {
                 grid.setContainsEnemy(false);
@@ -325,6 +329,9 @@ public class Map implements GameMessages {
             grid.setContainsPlayer(false);
             playerXCoordinate = lastPlayerXCoordinate.removeLast();
             playerYCoordinate = lastPlayerYCoordinate.removeLast();
+        }
+        else if(grid.isContainsExit()) {
+
         }
         else {
             System.out.println("Just another empty dungeon cell..");
