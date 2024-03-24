@@ -5,6 +5,7 @@ public class miniBoss extends baseEnemy{
     private String halfHpCry;
     private String defeatMsg;
     private String killPlayerMsg;
+    private int maxHp;
     //constructors
     public miniBoss(String name, String enemyIntro, int hp, int attPower, int goldDrop, String bossOST, String halfHpCry, String defeatMsg, String killPlayerMsg) {
         super(name, enemyIntro, hp, attPower, goldDrop);
@@ -12,8 +13,14 @@ public class miniBoss extends baseEnemy{
         this.halfHpCry = halfHpCry;
         this.defeatMsg = defeatMsg;
         this.killPlayerMsg = killPlayerMsg;
+        this.maxHp = hp;
     }
     //getters
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+    
     public String getBossOST(){
         return bossOST;
     }

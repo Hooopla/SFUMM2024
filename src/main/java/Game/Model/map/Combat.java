@@ -148,7 +148,7 @@ public class Combat {
     }
 
     private void startFight() {
-        String songLink = "https://www.youtube.com/watch?v=1dSilEmz7FE&ab_channel=Anos";
+        String songLink = "https://youtube.com/clip/UgkxL7KJ5oLMaoROMzqt6a7cnWhR3HoTwanh?si=k7Ej6cTOMMLygkOz";
         MusicPlayer.openGoogleLink(songLink);
         System.out.println(enemy.getEnemyIntro());
         enemy.printEnemyInfo();
