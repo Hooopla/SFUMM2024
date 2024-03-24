@@ -22,6 +22,7 @@ public class Room {
 
     private String message;
 
+
     private NPC npc;
 
     public Room() {
