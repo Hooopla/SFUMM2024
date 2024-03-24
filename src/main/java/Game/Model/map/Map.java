@@ -121,7 +121,10 @@ public class Map {
                     System.out.print("P ");
                 } else if (room.isContainsExplorable()) {
                     System.out.print("E ");
-                } else {
+                } else if (room.isContainsEnemy()) {
+                    System.out.println("M ");
+                }
+                else {
                     System.out.print(". ");
                 }
             }
