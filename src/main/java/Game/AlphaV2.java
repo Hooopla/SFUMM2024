@@ -13,17 +13,17 @@ public class AlphaV2 implements  GameMessages {
         boolean ApplicationRunning = true;
         boolean inGame = false;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n" +
-                "________   ____ __________    ___________________________    _______    _________\n" +
-                "\\______ \\ |    |   \\      \\  /  _____/\\_   _____/\\_____  \\   \\      \\  /   _____/\n" +
-                " |    |  \\|    |   /   |   \\/   \\  ___ |    __)_  /   |   \\  /   |   \\ \\_____  \\ \n" +
-                " |    `   \\    |  /    |    \\    \\_\\  \\|        \\/    |    \\/    |    \\/        \\\n" +
-                "/_______  /______/\\____|__  /\\______  /_______  /\\_______  /\\____|__  /_______  /\n" +
-                "        \\/                \\/        \\/        \\/         \\/         \\/        \\/ \n");
-        GameMessages.titleScreen();
 
         // Continuous input loop
         while (ApplicationRunning) {
+            System.out.println("\n" +
+                    "________   ____ __________    ___________________________    _______    _________\n" +
+                    "\\______ \\ |    |   \\      \\  /  _____/\\_   _____/\\_____  \\   \\      \\  /   _____/\n" +
+                    " |    |  \\|    |   /   |   \\/   \\  ___ |    __)_  /   |   \\  /   |   \\ \\_____  \\ \n" +
+                    " |    `   \\    |  /    |    \\    \\_\\  \\|        \\/    |    \\/    |    \\/        \\\n" +
+                    "/_______  /______/\\____|__  /\\______  /_______  /\\_______  /\\____|__  /_______  /\n" +
+                    "        \\/                \\/        \\/        \\/         \\/         \\/        \\/ \n");
+            GameMessages.titleScreen();
             System.out.print(">>");
             String input = scanner.nextLine();
             switch (input) {
@@ -50,22 +50,24 @@ public class AlphaV2 implements  GameMessages {
                         String playerControl = movementScanner.nextLine();
                         switch (playerControl.toLowerCase().replaceAll("\\s", "")) {
                             case "up":
-                                inGame = dungeonMap.move(Direction.UP);
+                                dungeonMap.move(Direction.UP);
                                 break;
                             case "down":
-                                inGame = dungeonMap.move(Direction.DOWN);
+                                dungeonMap.move(Direction.DOWN);
                                 break;
                             case "left":
-                                inGame = dungeonMap.move(Direction.LEFT);
+                                dungeonMap.move(Direction.LEFT);
                                 break;
                             case "right":
-                                inGame = dungeonMap.move(Direction.RIGHT);
+                                dungeonMap.move(Direction.RIGHT);
                                 break;
                             default:
                                 System.out.println("Invalid direction.");
                                 break;
                         }
+                        inGame = player.isAlive();
                     }
+                    break;
                 case "2":
                     GameMessages.showCredits();
                     break;

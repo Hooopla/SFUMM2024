@@ -43,6 +43,9 @@ public class Map {
 
     public void setNewPlayer(character player) {
         this.player = player;
+        placePlayer();
+        lastPlayerXCoordinate = new LinkedList<>();
+        lastPlayerYCoordinate = new LinkedList<>();
 
     }
     private void alphaMap() {
@@ -126,7 +129,7 @@ public class Map {
         }
     }
 
-    public boolean move(Direction direction) {
+    public void move(Direction direction) {
         int newX = playerXCoordinate;
         int newY = playerYCoordinate;
         switch (direction) {
@@ -147,10 +150,9 @@ public class Map {
                 break;
         }
         if (isValidMove(newX, newY)) {
-            return movePlayerToRoom(newX, newY);
+            movePlayerToRoom(newX, newY);
         } else {
             System.out.println("Cannot move in that direction.");
-            return true;
         }
     }
 
@@ -158,31 +160,26 @@ public class Map {
         return x >= 0 && x < width && y >= 0 && y < height && grid[y][x].isContainsExplorable();
     }
 
-    private boolean movePlayerToRoom(int newX, int newY) {
+    private void movePlayerToRoom(int newX, int newY) {
         grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(false);
         lastPlayerYCoordinate.add(playerYCoordinate);
         lastPlayerXCoordinate.add(playerXCoordinate);
         playerXCoordinate = newX;
         playerYCoordinate = newY;
         grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(true);
-        return checkForEvents(grid[playerYCoordinate][playerXCoordinate]);
+        checkForEvents(grid[playerYCoordinate][playerXCoordinate]);
     }
 
-    private boolean checkForEvents(Room grid) {
-        boolean isPlayerAlive = true;
+    private void checkForEvents(Room grid) {
         // Check for Combat
         if(grid.isContainsEnemy()) {
             // Call the combat Function
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
-            isPlayerAlive = battleSequence.getBattleOutcome();
+            this.player.setAlive(battleSequence.getBattleOutcome());
         }
         else if(grid.isContainsNPC()) {
             System.out.println("NPC Dialogue");
         }
-        return isPlayerAlive;
-    }
-    public boolean isAlive() {
-        return false;
     }
 }

@@ -8,11 +8,22 @@ public class character {
     private int attPoints;
     private int currentGold;
 
+    private boolean alive;
+
     public character(String username) {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
         this.attPoints = 10;
         this.currentGold = 0;
+        this.alive = true;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     //getter
