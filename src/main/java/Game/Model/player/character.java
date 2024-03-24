@@ -13,22 +13,21 @@ public class character {
     private boolean hasKey;
     private int hpPots;
     private int papers;
-
     private String chant;
 
     public character(String username) {
         this.username = username;
-        //this.healthPoints = randomizeStartingHP();
-        this.healthPoints = 500;
-        this.attPoints = 20;
-        this.currentGold = 0;
-        this.attPoints = 100;
+        this.healthPoints = randomizeStartingHP();
+        //this.healthPoints = 500;
+        //this.attPoints = 20;
+        //this.currentGold = 0;
+        this.attPoints = 10;
         this.currentGold = 1000;
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
         this.hpPots = 2;
-        this.papers = 0;
+        this.papers = 1;
         createChant();
     }
 

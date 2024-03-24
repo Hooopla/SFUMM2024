@@ -216,7 +216,9 @@ public class Map implements GameMessages {
     private void checkForEvents(Room grid) {
         GameMessages.clearScreen();
         if(grid.isContainsMessage()) {
+            System.out.println("You found a piece of paper and it reads...");
             System.out.println(grid.getMessage());
+            System.out.println("I should be careful the blood stains on this notes tells me something bad...");
             grid.setContainsMessage(false);
         }
         // Checking for Basic Enemy
