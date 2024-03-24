@@ -57,52 +57,32 @@ public class Map {
         // We meet Aurelia
         grid[2][4].setContainsExplorable(true);
         grid[2][4].setNpc(Aurelia);
-        //
         grid[3][4].setContainsExplorable(true);
-        //
         grid[4][4].setContainsExplorable(true);
-        //
         grid[5][4].setContainsExplorable(true);
-        //
         grid[6][4].setContainsExplorable(true);
-        //
         grid[7][4].setContainsExplorable(true);
-        //
         grid[1][5].setContainsExplorable(true);
         grid[1][6].setContainsExplorable(true);
         grid[1][7].setContainsExplorable(true);
-
-        //
         grid[1][3].setContainsExplorable(true);
         grid[1][2].setContainsExplorable(true);
         grid[1][1].setContainsExplorable(true);
         grid[1][0].setContainsExplorable(true);
         grid[0][0].setContainsExplorable(true);
-
-
-        //
         grid[5][3].setContainsExplorable(true);
         grid[5][2].setContainsExplorable(true);
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
         grid[3][1].setContainsExplorable(true);
-
-        //
         grid[6][5].setContainsExplorable(true);
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
         grid[4][6].setContainsExplorable(true);
-
-        //
         grid[7][3].setContainsExplorable(true);
         grid[7][2].setContainsExplorable(true);
         grid[7][1].setContainsExplorable(true);
         grid[7][0].setContainsExplorable(true);
-
-        //
-
-        //
-
     }
     private void placePlayer() {
         playerXCoordinate = 4;
@@ -146,7 +126,7 @@ public class Map {
         }
     }
 
-    public void move(Direction direction) {
+    public boolean move(Direction direction) {
         int newX = playerXCoordinate;
         int newY = playerYCoordinate;
         switch (direction) {
@@ -164,13 +144,13 @@ public class Map {
                 break;
             default:
                 System.out.println("Invalid direction.");
-                return;
+                break;
         }
-
         if (isValidMove(newX, newY)) {
-            movePlayerToRoom(newX, newY);
+            return movePlayerToRoom(newX, newY);
         } else {
             System.out.println("Cannot move in that direction.");
+            return true;
         }
     }
 
@@ -178,26 +158,31 @@ public class Map {
         return x >= 0 && x < width && y >= 0 && y < height && grid[y][x].isContainsExplorable();
     }
 
-    private void movePlayerToRoom(int newX, int newY) {
+    private boolean movePlayerToRoom(int newX, int newY) {
         grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(false);
         lastPlayerYCoordinate.add(playerYCoordinate);
         lastPlayerXCoordinate.add(playerXCoordinate);
         playerXCoordinate = newX;
         playerYCoordinate = newY;
         grid[playerYCoordinate][playerXCoordinate].setContainsPlayer(true);
-        checkForEvents(grid[playerYCoordinate][playerXCoordinate]);
+        return checkForEvents(grid[playerYCoordinate][playerXCoordinate]);
     }
 
-    private void checkForEvents(Room grid) {
+    private boolean checkForEvents(Room grid) {
+        boolean isPlayerAlive = true;
         // Check for Combat
         if(grid.isContainsEnemy()) {
             // Call the combat Function
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
             battleSequence.startFight();
+            isPlayerAlive = battleSequence.getBattleOutcome();
         }
         else if(grid.isContainsNPC()) {
-            //
             System.out.println("NPC Dialogue");
         }
+        return isPlayerAlive;
+    }
+    public boolean isAlive() {
+        return false;
     }
 }
