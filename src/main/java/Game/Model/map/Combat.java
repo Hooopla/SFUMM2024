@@ -37,27 +37,31 @@ public class Combat {
                 case "attack" -> {
                     //damage calc shit thingy
                     System.out.println("You attacked the " + enemy.getName() + " for " + player.getAttPoints() + " damage!");
-                    //damage = enemy.getHp() - player.getAttPoints();
                     enemy.setHp(enemy.getHp() - player.getAttPoints());
                     enemy.printEnemyInfo();
+                    //check if enemy is dead
+                    if(enemy.getHp() <= 0){
+                        System.out.println("You have defeated the " + enemy.getName() + "!");
+                        setBattleOutcome(true);
+                        System.out.println(getBattleOutcome());
+                        return;
+                    }
 
+                    //if enemy is not dead
                     if (enemy.getHp() > 0) {
+                        //enemy attack
                         System.out.println("===" + enemy.getName() + "'s Turn ===");
                         player.setHealthPoints(player.getHealthPoints() - enemy.getAttPower());
                         System.out.println(enemy.getName() + " backhanded you for " + enemy.getAttPower() + " damage!\n");
                         player.printPlayerStatus();
 
+                        //if player is deadge
                         if(player.getHealthPoints() <= 0){
                             System.out.println("u ded");
                             System.out.println(getBattleOutcome());
                             return;
                         }
-                        if(enemy.getHp() <= 0){
-                            System.out.println("You have defeated the " + enemy.getName() + "!");
-                            setBattleOutcome(true);
-                            System.out.println(getBattleOutcome());
-                            return;
-                        }
+
                     }
                 }
                 case "talk" -> {
