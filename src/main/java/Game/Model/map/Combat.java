@@ -63,7 +63,7 @@ public class Combat {
                     //enemy.printEnemyInfo();
                     //check if enemy is dead
                     // Check if boss is under 50% HP and hasn't been enraged before
-                    if (mBoss.getHp() < maxHp / 2 && !isBossEnraged) {
+                    if (maxHp < maxHp / 2 && !isBossEnraged) {
                         mBoss.enrage();
                         isBossEnraged = true; // Set the flag to true to indicate that the boss has been enraged
                     }
