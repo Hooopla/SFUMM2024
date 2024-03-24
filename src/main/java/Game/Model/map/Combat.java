@@ -154,7 +154,7 @@ public class Combat {
 
                         //if player is deadge
                         if(player.getHealthPoints() <= 0){
-                            System.out.println("u ded");
+                            System.out.println("| You Died |");
                             return;
                         }
 
