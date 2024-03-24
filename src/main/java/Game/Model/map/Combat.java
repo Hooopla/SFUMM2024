@@ -111,10 +111,33 @@ public class Combat {
                         }
                     }
                 }
-                case "bag" ->
-                    //open bag thingy
-                        System.out.println("You opened your bag");
-                default -> System.out.println("Try again bozo");
+                case "bag" -> {
+                    System.out.println("You opened your bag");
+                    if (player.getHpPots() > 0) {
+                        System.out.println("You have " + player.getHpPots() + " Bottle of life(s).");
+                        System.out.println("Would you like to use a potion?\n| Yes |\t| No |");
+
+                        Scanner scanner = new Scanner(System.in);
+                        String response = scanner.nextLine().trim().toLowerCase();
+
+                        if (response.equals("yes")) {
+                            // Use a potion
+                            int healingAmount = 10;
+                            player.setHealthPoints(player.getHealthPoints() + healingAmount);
+                            player.removeHpPots(1); // Decrement the number of potions
+                            System.out.println("You used a potion and healed for " + healingAmount + " HP.");
+                            System.out.println("Your current HP: " + player.getHealthPoints());
+                        } else if (response.equals("no")) {
+                            System.out.println("You chose not to use a potion.");
+                        } else {
+                            System.out.println("Invalid response. Please enter 'yes' or 'no'.");
+                        }
+                    } else {
+                        System.out.println("Your bag is empty.");
+                    }
+                }
+
+                default -> System.out.println("Please try again.");
             }
 
         }
