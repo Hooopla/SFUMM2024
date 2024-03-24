@@ -180,6 +180,9 @@ public class Map {
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
             }
+            else {
+                grid.setContainsEnemy(false);
+            }
         }
         else if(grid.isContainsNPC()) {
             System.out.println("NPC Dialogue");
