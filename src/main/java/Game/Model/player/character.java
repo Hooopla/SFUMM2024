@@ -13,22 +13,33 @@ public class character {
     private boolean hasKey;
     private int hpPots;
     private int papers;
+
+    private boolean winCondition;
     private String chant;
 
     public character(String username) {
         this.username = username;
         this.healthPoints = randomizeStartingHP();
-        //this.healthPoints = 500;
-        //this.attPoints = 20;
-        //this.currentGold = 0;
         this.attPoints = 10;
-        this.currentGold = 1000;
+        this.currentGold = 0;
         this.alive = true;
         this.hasMetAurelia = false;
         this.hasKey = false;
         this.hpPots = 2;
         this.papers = 1;
-        createChant();
+        this.winCondition = false;
+    }
+
+    public boolean isWinCondition() {
+        return winCondition;
+    }
+
+    public void setWinCondition(boolean winCondition) {
+        this.winCondition = winCondition;
+    }
+
+    public void setChant(String chant) {
+        this.chant = chant;
     }
 
     private void createChant() {
