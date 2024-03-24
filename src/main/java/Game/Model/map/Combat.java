@@ -16,6 +16,9 @@ public class Combat {
     public boolean getBattleOutcome(){
         return this.battleOutcome;
     }
+    public boolean setBattleOutcome(boolean battleOutcome){
+        return this.battleOutcome = battleOutcome;
+    }
     public Combat(baseEnemy enemy123, character player) {
         enemy = enemy123;
         this.player = player;
@@ -43,6 +46,18 @@ public class Combat {
                         player.setHealthPoints(player.getHealthPoints() - enemy.getAttPower());
                         System.out.println(enemy.getName() + " backhanded you for " + enemy.getAttPower() + " damage!\n");
                         player.printPlayerStatus();
+
+                        if(player.getHealthPoints() <= 0){
+                            System.out.println("u ded");
+                            System.out.println(getBattleOutcome());
+                            return;
+                        }
+                        if(enemy.getHp() <= 0){
+                            System.out.println("You have defeated the " + enemy.getName() + "!");
+                            setBattleOutcome(true);
+                            System.out.println(getBattleOutcome());
+                            return;
+                        }
                     }
                 }
                 case "talk" -> {
