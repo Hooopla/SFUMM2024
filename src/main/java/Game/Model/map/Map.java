@@ -41,6 +41,10 @@ public class Map {
         alphaMap();
     }
 
+    public void setNewPlayer(character player) {
+        this.player = player;
+
+    }
     private void alphaMap() {
         // Example of setting attributes for specific rooms
         // STARTING ROOM

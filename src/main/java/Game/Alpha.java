@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Alpha {
     public static void main(String[] args) {
+
         character Player = new character("Solaire");
         // Create the map
         Map dungeonMap = new Map(10, 10, Player); // Create a 10x10 map
