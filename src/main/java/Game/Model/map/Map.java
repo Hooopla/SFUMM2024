@@ -93,21 +93,24 @@ public class Map implements GameMessages {
 
         grid[0][0].setContainsExplorable(true);
         grid[5][3].setContainsExplorable(true);
-        grid[5][2].setContainsExplorable(true);
-        grid[5][2].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
+        grid[6][5].setContainsExplorable(true);
+        grid[6][5].setEnemyInRoom(new baseEnemy("Ravaging Raven", "Piercing Caws", 10, 5, 2));
         grid[5][1].setContainsExplorable(true);
         grid[4][1].setContainsExplorable(true);
+        grid[4][1].setBossInRoom(new miniBoss("Asylum Demon", "| asylum text |", 100, 15, 20, "Tarus Demon", "*Slams into the ground", "Victory Achieved", "..."));
+
         //grid[4][1] MINI BOSS
+
         grid[3][1].setContainsExplorable(true);
         grid[3][1].setContainsKey(true);
-        grid[6][5].setContainsExplorable(true);
-        grid[6][5].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
+        grid[5][2].setContainsExplorable(true);
+        grid[5][2].setEnemyInRoom(new baseEnemy ("Colin", "That demon in there can't take your soul. He'll only get stronger... I must take your life then.. I'm sorry..", 40, 6, 2));
         grid[6][6].setContainsExplorable(true);
         grid[5][6].setContainsExplorable(true);
         grid[5][6].setEnemyInRoom(new baseEnemy("Crazed Imp", "Hehehe! giggles mischievously Snicker-snack!", 40, 30, 5));
 
         grid[4][6].setContainsExplorable(true);
-        //grid[4][6] boss asylum demon
+        grid[4][6].setBossInRoom(new miniBoss("Darkeater Midir", "*Laser Beam Intensifies", 200, 30, 40, "The Ringed City - Darkeater Midir", "GNAAAAAH!", "Heir of the Dungeon Destroyed", "*ROARS*"));
 
         grid[7][3].setContainsExplorable(true);
         grid[7][3].setContainsShop(true);
@@ -115,7 +118,7 @@ public class Map implements GameMessages {
         grid[7][1].setContainsExplorable(true);
         //grid[7][0]
         grid[7][0].setContainsExplorable(true);
-        grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "| What, still here?|\n| Hand it over. That thing, your dark soul |\n| For my lady's painting. |", 100, 20, 50, "The Ringed City - Slave Knight Gael", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Soul of slave knight gael", "For my lady's painting."));
+        grid[7][0].setBossInRoom(new miniBoss("Slave Knight Gael", "| What, still here?|\n| Hand it over. That thing, your dark soul |\n| For my lady's painting. |", 100, 20, 50, "The Ringed City - Slave Knight Gael", "| Ahh, is this the blood? |\n | The blood of the dark soul? |", "Heir of the Dungeon Destroyed", "For my lady's painting."));
         grid[7][0].setContainsExit(true);
     }
     private void placePlayer() {
