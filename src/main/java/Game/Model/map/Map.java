@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Map implements GameMessages {
-    private Room[][] grid;
+    private final Room[][] grid;
     private final int width;
     private final int height;
 
-    private NPC Aurelia = new NPC();
+    private final NPC Aurelia = new NPC();
 
     // Player Tracker
     private character player;
@@ -82,7 +82,7 @@ public class Map implements GameMessages {
         grid[5][4].setContainsShop(true);
         grid[6][4].setContainsExplorable(true);
         //grid[6][4] MINI BOSS
-        grid[7][4].setContainsExplorable(true);;
+        grid[7][4].setContainsExplorable(true);
         //grid[7][4] MINI BOSS
         grid[0][0].setContainsExplorable(true);
         grid[0][0].setNpc(Aurelia);
@@ -249,6 +249,34 @@ public class Map implements GameMessages {
         // Checking for SHOP
         else if(grid.isContainsShop()) {
             if(player.getCurrentGold() < 1000000) {
+                System.out.println("""
+                               .-""-.
+                              /-.{}  \\
+                              | _\\__.|
+                              \\/^)^ \\/
+                               \\ =  /
+                          .---./`--`\\.--._
+                         /     `;--'`     \\
+                        ;        /`       ;
+                        |       |*        |
+                        /   |   |     |    \\
+                        |    \\  |*    /    |
+                        \\_   |\\_|____/|  __/
+                          \\__//======\\\\__/
+                          / //_      _\\\\ \\
+                          -'  |`""\""`|  `-
+                              |  L   |
+                              >_ || _<
+                              |  ||  |
+                              |  ||  |
+                             /   ||   \\
+                            /    /,    \\
+                             `|"|`"|"|"`
+                             /  )  /  )  nic/jgs
+                            /__/  /__/
+                        
+                        """);
+
                 System.out.println("Shopkeeper: Hey there you! Yes you!! Come take a look you might find things you need...");
                 System.out.println("Shopkeeper: Wait a minute... You have no gold..");
                 System.out.println("*They close up shop...*");
