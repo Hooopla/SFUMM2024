@@ -1,6 +1,7 @@
 package Game.Model.map;
 import Game.GameMessages;
 import Game.Model.enemy.baseEnemy;
+import Game.Model.enemy.miniBoss;
 import Game.Model.player.character;
 
 import java.util.LinkedList;
@@ -57,7 +58,7 @@ public class Map implements GameMessages {
 
         // THIS IS A ROOM THAT WILL HAVE AN ENEMY FOR NOW FOR TESTING LOL
         grid[1][4].setContainsExplorable(true);
-        grid[1][4].setEnemyInRoom(new baseEnemy("Savage Skeleton", "Angry Ratting", 40, 10, 5));
+        grid[1][4].setBossInRoom(new miniBoss("Savage Skeleton", "Angry Ratting", 40, 10, 5, "LOL", "NYAH", "NOO"));
         grid[1][5].setContainsExplorable(true);
         grid[1][5].setEnemyInRoom(new baseEnemy("Swole Skeleton", "=== Thicc Rattling ===", 50, 15, 7));
         grid[1][6].setContainsExplorable(true);
@@ -146,10 +147,8 @@ public class Map implements GameMessages {
                     System.out.print("S ");
                 } else if (room.isContainsEnemy()) {
                     System.out.print("E ");
-                } else if (room.isContainsMiniBoss()) {
-                    System.out.print("M ");
-                } else if (room.isContainsFinalBoss()) {
-                    System.out.print("F ");
+                } else if (room.isContainsBoss()) {
+                    System.out.print("B ");
                 } else if (room.isContainsNPC()) {
                     System.out.print("A ");
                 } else if (room.isContainsExplorable()) {
@@ -210,7 +209,7 @@ public class Map implements GameMessages {
             GameMessages.printCombatText();
             System.out.println("You stumble into an enemy..");
             Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
-            battleSequence.startFight();
+            battleSequence.fightScenarioChecker();
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
@@ -220,31 +219,31 @@ public class Map implements GameMessages {
             }
         }
         // Checking for Mini Boss
-        if(grid.isContainsMiniBoss()) {
-           Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
-           battleSequence.startFight();
+        else if(grid.isContainsBoss()) {
+           Combat battleSequence = new Combat(grid.getBossInRoom(), player);
+           battleSequence.fightScenarioChecker();
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
             }
             else {
-                grid.setContainsEnemy(false);
+                grid.setContainsBoss(false);
             }
         }
         // Checking for Final Boss
-        if(grid.isContainsFinalBoss()) {
-            Combat battleSequence = new Combat(grid.getEnemyInRoom(), player);
-            battleSequence.startFight();
+        else if(grid.isContainsBoss()) {
+            Combat battleSequence = new Combat(grid.getBossInRoom(), player);
+            battleSequence.fightScenarioChecker();
             this.player.setAlive(battleSequence.getBattleOutcome());
             if(!this.player.isAlive()) {
                 grid.setContainsPlayer(false);
             }
             else {
-                grid.setContainsEnemy(false);
+                grid.setContainsBoss(false);
             }
         }
         // Checking for NPC
-        if(grid.isContainsNPC()) {
+        else if(grid.isContainsNPC()) {
             System.out.println("NPC Dialogue");
         }
         // Checking for SHOP

@@ -1,5 +1,6 @@
 package Game.Model.map;
 import Game.Model.enemy.baseEnemy;
+import Game.Model.enemy.miniBoss;
 import Game.Model.player.character;
 import Game.Model.map.Room;
 import java.util.Random;
@@ -10,6 +11,7 @@ import static java.lang.Thread.sleep;
 
 public class Combat {
     baseEnemy enemy;
+    miniBoss mBoss;
     character player;
     boolean battleOutcome;
     int roll;
@@ -23,9 +25,87 @@ public class Combat {
         enemy = enemy123;
         this.player = player;
         this.battleOutcome = false;
-}
-    //while in combat
-    public void startFight() {
+    }
+
+    public Combat(miniBoss enemy123, character player) {
+        this.mBoss = enemy123;
+        this.player = player;
+        this.battleOutcome = false;
+    }
+    //while in combat with
+    public void fightScenarioChecker() {
+        if(!(enemy == null)) {
+            startFight();
+        }
+        else if(!(mBoss == null)) {
+            startBossFight();
+        }
+    }
+    private void startBossFight() {
+        System.out.println("MBOSS");
+        mBoss.printEnemyInfo();
+
+        while (mBoss.getHp() > 0 && player.getHealthPoints() > 0){
+            //print status
+            Scanner action = new Scanner(System.in);
+            System.out.println("What is your move? \n" + "| Attack |\t" + "| Bag |\t" + "| Talk |");
+            String command = action.nextLine().trim().toLowerCase();
+
+            switch (command) {
+                case "attack" -> {
+                    System.out.println("You attacked the " + mBoss.getName() + " for " + player.getAttPoints() + " damage!");
+                    mBoss.setHp(mBoss.getHp() - player.getAttPoints());
+                    //enemy.printEnemyInfo();
+                    //check if enemy is dead
+                    if(mBoss.getHp() <= 0){
+                        System.out.println("You have defeated the " + mBoss.getName() + "!");
+                        player.setCurrentGold(player.getCurrentGold() + mBoss.getGoldDrop());
+                        System.out.println("You have gained " + mBoss.getGoldDrop() + " gold from the " + mBoss.getName() + "!");
+                        setBattleOutcome(true);
+                        return;
+                    }
+                    mBoss.printEnemyInfo();
+
+                    //if enemy is not dead
+                    if (mBoss.getHp() > 0) {
+                        //enemy attack
+                        System.out.println("===" + mBoss.getName() + "'s Turn ===");
+                        player.setHealthPoints(player.getHealthPoints() - mBoss.getAttPower());
+                        System.out.println(mBoss.getName() + " backhanded you for " + mBoss.getAttPower() + " damage!\n");
+                        //player.printPlayerStatus();
+
+                        //if player is deadge
+                        if(player.getHealthPoints() <= 0){
+                            System.out.println("u ded");
+                            return;
+                        }
+
+                    }
+                    player.printPlayerStatus();
+                }
+                case "talk" -> {
+                    System.out.println("You try reasoning with the " + enemy.getName());
+                    roll = roll();
+                    if (roll <= 5) {
+                        System.out.println("=== " + enemy.getEnemyIntro() + " ===");
+                        System.out.println("What did you expect...");
+                    } else {
+                        System.out.println("=== Bass boosted " + enemy.getEnemyIntro() + " ===");
+                        System.out.println("Your ears are ringing... >:(");
+                    }
+                }
+                case "bag" ->
+                    //open bag thingy
+                        System.out.println("You opened your bag");
+                default -> System.out.println("Try again bozo");
+            }
+
+        }
+
+    }
+
+    private void startFight() {
+        System.out.println("NORMAL ENEMY");
         enemy.printEnemyInfo();
         
         while (enemy.getHp() > 0 && player.getHealthPoints() > 0){
@@ -84,7 +164,6 @@ public class Combat {
             }
 
         }
-
     }
 
     private int roll() {

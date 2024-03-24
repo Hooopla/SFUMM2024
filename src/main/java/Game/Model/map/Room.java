@@ -1,17 +1,18 @@
 package Game.Model.map;
 
 import Game.Model.enemy.baseEnemy;
+import Game.Model.enemy.miniBoss;
 
 public class Room {
     private boolean containsExit;
     private boolean containsExplorable;
     private boolean containsPlayer;
     private baseEnemy enemyInRoom;
+    private miniBoss bossInRoom;
     private boolean containsEnemy;
     private boolean containsSafeZone;
     private boolean containsNPC;
-    private boolean containsMiniBoss;
-    private boolean containsFinalBoss;
+    private boolean containsBoss;
     private boolean containsShop;
     private boolean locked;
 
@@ -24,8 +25,7 @@ public class Room {
         containsEnemy = false;
         containsSafeZone = false;
         containsNPC = false;
-        containsMiniBoss = false;
-        containsFinalBoss = false;
+        containsBoss = false;
         containsShop = false;
         locked = false;
     }
@@ -46,20 +46,21 @@ public class Room {
         this.containsShop = containsShop;
     }
 
-    public boolean isContainsFinalBoss() {
-        return containsFinalBoss;
+    public boolean isContainsBoss() {
+        return containsBoss;
     }
 
-    public void setContainsFinalBoss(boolean containsFinalBoss) {
-        this.containsFinalBoss = containsFinalBoss;
+    public void setBossInRoom(miniBoss bossInRoom) {
+       this.bossInRoom = bossInRoom;
+       setContainsBoss(true);
     }
 
-    public boolean isContainsMiniBoss() {
-        return containsMiniBoss;
+    public miniBoss getBossInRoom() {
+        return this.bossInRoom;
     }
 
-    public void setContainsMiniBoss(boolean containsMiniBoss) {
-        this.containsMiniBoss = containsMiniBoss;
+    public void setContainsBoss(boolean containsBoss) {
+        this.containsBoss = containsBoss;
     }
 
     public boolean isContainsExit() {
