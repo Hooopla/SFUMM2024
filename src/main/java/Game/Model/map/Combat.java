@@ -1,4 +1,5 @@
 package Game.Model.map;
+import Game.Model.MusicPlayer;
 import Game.Model.enemy.baseEnemy;
 import Game.Model.enemy.miniBoss;
 import Game.Model.player.character;
@@ -44,6 +45,7 @@ public class Combat {
         }
     }
     private void startBossFight() {
+        MusicPlayer.openGoogleLink(mBoss.getBossOST());
         System.out.println(mBoss.getEnemyIntro());
         mBoss.printEnemyInfo();
         System.out.println(mBoss.getBossOST() + "\nYou brace yourself for a difficult battle.");
@@ -146,6 +148,8 @@ public class Combat {
     }
 
     private void startFight() {
+        String songLink = "https://youtube.com/clip/UgkxL7KJ5oLMaoROMzqt6a7cnWhR3HoTwanh?si=k7Ej6cTOMMLygkOz";
+        MusicPlayer.openGoogleLink(songLink);
         System.out.println(enemy.getEnemyIntro());
         enemy.printEnemyInfo();
         while (enemy.getHp() > 0 && player.getHealthPoints() > 0){
